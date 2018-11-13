@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.blog.model.SysUserPo;
+import com.blog.model.po.SysUserPo;
 import com.blog.service.UserService;
 
 @RequestMapping("user")
