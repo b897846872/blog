@@ -33,6 +33,20 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		<!-- 通用Mapper插件
+		 文档地址：https://gitee.com/free/Mapper/wikis/Home -->
+		<dependency>
+		    <groupId>tk.mybatis</groupId>
+		    <artifactId>mapper-spring-boot-starter</artifactId>
+		    <version>2.0.2</version>
+		</dependency>
+		<!-- 分页插件
+		 文档地址：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md -->
+		<dependency>
+		    <groupId>com.github.pagehelper</groupId>
+		    <artifactId>pagehelper-spring-boot-starter</artifactId>
+		    <version>1.2.5</version>
+		</dependency>
 		<!-- mysql驱动 -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -67,6 +81,18 @@
 		</dependency>
 	</dependencies>
 	<build>
+	    <resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	        </resource>
+	        <resource>
+	            <directory>src/main/java</directory>
+	            <includes>
+	                <include>**/*.xml</include>
+	            </includes>
+	            <filtering>true</filtering>
+	        </resource>
+    	</resources>
 		<!-- 配置了很多插件 -->
 		<plugins>
 			<plugin>

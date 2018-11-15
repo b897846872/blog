@@ -4,7 +4,8 @@
     <select id="findUserAll" resultType="sysUserPo">
         select 
         	id, login_name as loginName, real_name as realName, password,
-        	create_time as createTime, update_time as updateTime
+        	create_time as createTime, update_time as updateTime,
+        	email, phone
         from sys_user
     </select>
 </mapper>
