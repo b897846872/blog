@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.UserMapper">
+    <select id="findSysLogAll" resultType="sysLogPo">
+        SELECT 
+        	id, ip, operate_user as operateUser, operate_modile as operateModile,
+        	log_content as logContent, create_time as createTime, update_time as updateTime
+        FROM sys_log
+    </select>
+    <insert id="saveSysLog">
+    	INSERT INTO sys_log
+    		(id, ip, operate_user, operate_modile, log_content, create_time) 
+    	VALUES
+    		(#{id}, #{ip}, #{operateUser}, #{operateModile}, #{logContent}, #{createTime});
+    </insert>
+</mapper>

@@ -15,4 +15,9 @@ public class ResponseResultUtil {
 		ResponseResult result = new ResponseResult<>(-1, message);
 		return result;
 	}
+
+	public static ResponseResult success() {
+		ResponseResult result = new ResponseResult<>(0, "");
+		return result;
+	}
 }
