@@ -6,5 +6,5 @@ import com.blog.model.po.SysLogPo;
 
 public interface SysLogService {
 	List<SysLogPo> findSysLogAll();
-	void saveSysLog();
+	void saveSysLog(SysLogPo logPo);
 }	

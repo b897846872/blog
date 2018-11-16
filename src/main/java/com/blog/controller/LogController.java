@@ -35,11 +35,4 @@ public class LogController {
         log.info("系统日志列表", logPageInfo);
 		return ResponseResultUtil.success(logPageInfo);
 	}
-	
-	@PostMapping("save")
-	@SuppressWarnings("rawtypes")
-	public ResponseResult save(@RequestBody SysLogPo sysLogPo) {
-		sysLogService.saveSysLog();
-		return ResponseResultUtil.success();
-	}
 }

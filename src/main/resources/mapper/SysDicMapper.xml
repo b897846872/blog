@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysDicMapper">
+    <select id="findSysDicAll" resultType="sysDicPo">
+        SELECT 
+        	id, dic_name as dicName, dic_code as dicCode, dic_type as dicType,
+        	create_time as createTime, update_time as updateTime
+        FROM sys_dic
+    </select>
+    <select id="findSysDicToType" resultType="sysDicPo">
+        SELECT 
+        	id, dic_name as dicName, dic_code as dicCode, dic_type as dicType,
+        	create_time as createTime, update_time as updateTime
+        FROM sys_dic
+    </select>
+    <insert id="saveSysDic">
+    	INSERT INTO sys_dic
+    		(id, dic_name, dic_code, dic_type, create_time) 
+    	VALUES
+    		(#{id}, #{dicName}, #{dicCode}, #{dicType}, #{createTime});
+    </insert>
+    <delete id="deleteSysDic">
+    	DELETE FROM sys_dic WHERE id = #{id};
+    </delete>
+    <update id="updateSysDicToDicType">
+    	UPDATE FROM sys_dic SET 
+    		dic_type = #{dicType} 
+    	WHERE id = #{id};
+    </update>
+    <update id="updateSysDicToDicCode">
+    	UPDATE FROM sys_dic SET 
+    		dic_name = #{dicName} AND dic_code = #{dicCode} 
+    	WHERE id = #{id};
+    </update>
+</mapper>

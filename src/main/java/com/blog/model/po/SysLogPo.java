@@ -1,9 +1,15 @@
 package com.blog.model.po;
 
-public class SysLogPo {
+import java.io.Serializable;
+
+public class SysLogPo extends BasePo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String ip;
 	private String operateUser;
-	private String operateModile;
+	private String operateModule;
 	private String logContent;
 	public String getIp() {
 		return ip;
@@ -17,11 +23,11 @@ public class SysLogPo {
 	public void setOperateUser(String operateUser) {
 		this.operateUser = operateUser;
 	}
-	public String getOperateModile() {
-		return operateModile;
+	public String getOperateModule() {
+		return operateModule;
 	}
-	public void setOperateModile(String operateModile) {
-		this.operateModile = operateModile;
+	public void setOperateModule(String operateModule) {
+		this.operateModule = operateModule;
 	}
 	public String getLogContent() {
 		return logContent;

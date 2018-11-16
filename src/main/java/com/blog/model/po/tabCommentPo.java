@@ -1,6 +1,12 @@
 package com.blog.model.po;
 
-public class tabCommentPo {
+import java.io.Serializable;
+
+public class tabCommentPo extends BasePo implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String articleId;
 	private String userId;
 	private String content;

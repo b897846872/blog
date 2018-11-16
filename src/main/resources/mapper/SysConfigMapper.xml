@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysConfigMapper">
+    <select id="findSysConfigAll" resultType="sysConfigPo">
+        SELECT 
+        	id, name, value, create_time as createTime, update_time as updateTime
+        FROM sys_config
+    </select>
+    <insert id="saveSysConfig">
+    	INSERT INTO sys_config
+    		(id, name, value, create_time) 
+    	VALUES
+    		(#{id}, #{name}, #{value}, #{createTime});
+    </insert>
+    <delete id="deleteSysConfig" parameterType="String">
+    	DELETE FROM sys_config WHERE id = #{id};
+    </delete>
+    <update id="updateSysConfig" parameterType="Map">
+    	UPDATE FROM sys_config SET 
+    		name = #{name} and value = #{value}
+    	WHERE id = #{id};
+    </update>
+</mapper>
