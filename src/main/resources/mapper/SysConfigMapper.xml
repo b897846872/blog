@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.mapper.SysConfigMapper">
-    <select id="findSysConfigAll" resultType="sysConfigPo">
+    <select id="findSysConfigAll" resultType="sysConfigPo" parameterType="String">
         SELECT 
         	id, name, value, create_time as createTime, update_time as updateTime
         FROM sys_config
+		<if test="_parameter != null">
+        	and ( name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(value) like UPPER(CONCAT('%',#{searchValue},'%')) )
+        </if>
     </select>
     <insert id="saveSysConfig">
     	INSERT INTO sys_config
@@ -15,9 +19,9 @@
     <delete id="deleteSysConfig" parameterType="String">
     	DELETE FROM sys_config WHERE id = #{id};
     </delete>
-    <update id="updateSysConfig" parameterType="Map">
-    	UPDATE FROM sys_config SET 
-    		name = #{name} and value = #{value}
+    <update id="updateSysConfig">
+    	UPDATE sys_config SET 
+    		name = #{name}, value = #{value}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
 </mapper>

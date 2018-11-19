@@ -2,7 +2,7 @@ package com.blog.model.po;
 
 import java.io.Serializable;
 
-public class tabCommentPo extends BasePo implements Serializable{
+public class TabCommentPo extends BasePo implements Serializable{
 	/**
 	 * 
 	 */

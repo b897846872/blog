@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.mapper.SysDicMapper">
-    <select id="findSysDicAll" resultType="sysDicPo">
+    <select id="findSysDicAll" resultType="sysDicPo" parameterType="String">
         SELECT 
         	id, dic_name as dicName, dic_code as dicCode, dic_type as dicType,
         	create_time as createTime, update_time as updateTime
-        FROM sys_dic
+        FROM sys_dic WHERE 1=1
+        <if test="_parameter != null">
+        	and (dic_name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(dic_code) like UPPER(CONCAT('%',#{searchValue},'%'))
+        	or dic_type like CONCAT('%',#{searchValue},'%'))
+        </if>
     </select>
     <select id="findSysDicToType" resultType="sysDicPo">
         SELECT 
@@ -19,17 +24,17 @@
     	VALUES
     		(#{id}, #{dicName}, #{dicCode}, #{dicType}, #{createTime});
     </insert>
-    <delete id="deleteSysDic">
+    <delete id="deleteSysDic" parameterType="String">
     	DELETE FROM sys_dic WHERE id = #{id};
     </delete>
     <update id="updateSysDicToDicType">
-    	UPDATE FROM sys_dic SET 
-    		dic_type = #{dicType} 
+    	UPDATE sys_dic SET 
+    		dic_type = #{dicType}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
     <update id="updateSysDicToDicCode">
-    	UPDATE FROM sys_dic SET 
-    		dic_name = #{dicName} AND dic_code = #{dicCode} 
+    	UPDATE sys_dic SET
+    		dic_name = #{dicName}, dic_code = #{dicCode}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
 </mapper>

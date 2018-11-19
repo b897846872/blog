@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysConfigMapper;
+import com.blog.model.annotation.OperLog;
 import com.blog.model.po.SysConfigPo;
 @Service
 public class SysConfigServiceImpl implements SysConfigService {
@@ -16,11 +17,13 @@ public class SysConfigServiceImpl implements SysConfigService {
 	SysConfigMapper sysConfigMapper;
 	
 	@Override
+	@OperLog(operateModule="查询系统配置")
 	public List<SysConfigPo> findSysConfigAll() {
 		return sysConfigMapper.findSysConfigAll();
 	}
 
 	@Override
+	@OperLog(operateModule="保存系统配置")
 	public void saveSysConfig(SysConfigPo sysconfigPo) {
 		sysconfigPo.setId(UUIDGenerator.getUUID());
 		sysconfigPo.setCreateTime(new Date());
@@ -28,13 +31,16 @@ public class SysConfigServiceImpl implements SysConfigService {
 	}
 
 	@Override
+	@OperLog(operateModule="删除系统配置")
 	public void deleteSysConfig(String id) {
 		sysConfigMapper.deleteSysConfig(id);
 	}
 
 	@Override
-	public void updateSysConfig(Map<String, String> param) {
-		sysConfigMapper.updateSysConfig(param);
+	@OperLog(operateModule="修改系统配置")
+	public void updateSysConfig(SysConfigPo sysconfigPo) {
+		sysconfigPo.setUpdateTime(new Date());
+		sysConfigMapper.updateSysConfig(sysconfigPo);
 	}
 
 }

@@ -16,45 +16,55 @@ import org.slf4j.LoggerFactory;
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.po.SysConfigPo;
+import com.blog.model.po.SysDicPo;
 import com.blog.service.SysConfigService;
+import com.blog.service.SysDicService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-@RequestMapping("sysConfig")
+@RequestMapping("sysDic")
 @RestController
-public class SysConfigController {
-	private static Logger log = LoggerFactory.getLogger(SysConfigController.class);
+public class SysDicController {
+	private static Logger log = LoggerFactory.getLogger(SysDicController.class);
 	@Autowired
-	private SysConfigService sysConfigService;
+	private SysDicService sysDicService;
 	
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
-									@RequestParam(required = true) String pageSize) {
+									@RequestParam(required = true) String pageSize,
+									@RequestParam(required = false) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<SysConfigPo> sysConfigPageInfo = new PageInfo<>(sysConfigService.findSysConfigAll());
-        log.info("系统配置列表", sysConfigPageInfo);
-		return ResponseResultUtil.success(sysConfigPageInfo);
+        PageInfo<SysDicPo> sysDicPageInfo = new PageInfo<>(sysDicService.findSysDicAll(searchValue));
+        log.info("系统字典列表", sysDicPageInfo);
+		return ResponseResultUtil.success(sysDicPageInfo);
 	}
 	
 	@PutMapping("save")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult save(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.saveSysConfig(sysConfigPo);
+	public ResponseResult save(@RequestBody SysDicPo sysDicPo){
+		sysDicService.saveSysDic(sysDicPo);
 		return ResponseResultUtil.success();
 	}
 	
 	@DeleteMapping("delete")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult delete(@RequestParam String id){
-		sysConfigService.deleteSysConfig(id);
+		sysDicService.deleteSysDic(id);
 		return ResponseResultUtil.success();
 	}
 	
-	@PutMapping("update")
+	@PutMapping("updateDicCode")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult update(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.updateSysConfig(sysConfigPo);
+	public ResponseResult updateDicCode(@RequestBody SysDicPo sysDicPo){
+		sysDicService.updateSysDicToDicCode(sysDicPo);
+		return ResponseResultUtil.success();
+	}
+	
+	@PutMapping("updateDicType")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult updateDicType(@RequestBody SysDicPo sysDicPo){
+		sysDicService.updateSysDicToDicType(sysDicPo);
 		return ResponseResultUtil.success();
 	}
 }

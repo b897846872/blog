@@ -14,5 +14,5 @@ public interface SysConfigMapper extends BaseMapper<SysConfigPo>{
 	List<SysConfigPo> findSysConfigAll();
 	void saveSysConfig(SysConfigPo sysconfigPo);
 	void deleteSysConfig(String id);
-	void updateSysConfig(Map<String, String> param);
+	void updateSysConfig(SysConfigPo sysconfigPo);
 }

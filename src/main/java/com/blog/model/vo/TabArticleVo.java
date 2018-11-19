@@ -1,8 +1,10 @@
-package com.blog.model.po;
+package com.blog.model.vo;
 
 import java.io.Serializable;
 
-public class tabArticlePo extends BasePo implements Serializable{
+import com.blog.model.po.BasePo;
+
+public class TabArticleVo extends BasePo implements Serializable{
 	/**
 	 * 
 	 */
@@ -10,8 +12,8 @@ public class tabArticlePo extends BasePo implements Serializable{
 	private String title;
 	private String userId;
 	private String content;
-	private String category;
-	private String type;
+	private String categoryId;
+	private String typeId;
 	private String clicks;
 	private String hasOriginal;
 	public String getTitle() {
@@ -32,17 +34,17 @@ public class tabArticlePo extends BasePo implements Serializable{
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getCategory() {
-		return category;
+	public String getCategoryId() {
+		return categoryId;
 	}
-	public void setCategory(String category) {
-		this.category = category;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
-	public String getType() {
-		return type;
+	public String getTypeId() {
+		return typeId;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeId(String typeId) {
+		this.typeId = typeId;
 	}
 	public String getClicks() {
 		return clicks;

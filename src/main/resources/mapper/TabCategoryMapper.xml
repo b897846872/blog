@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.TabCategoryMapper">
+    <select id="findTabCategoryAll" resultType="tabCategoryVo" parameterType="String">
+        SELECT 
+        	c.id, c.name, c.value, d.dic_name as dicName, d.dic_value as dicValue,
+        	d.dic_type as dicType, c.create_time as createTime, c.update_time as updateTime
+        FROM tab_category c
+        left join sys_dic d on d.id = c.type_id
+        WHERE 1=1
+        <if test="_parameter != null">
+        	and (name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(value) like UPPER(CONCAT('%',#{value},'%')) )
+        </if>
+    </select>
+    <insert id="saveTabCategory">
+    	INSERT INTO tab_category
+    		(id, name, value, type_id, create_time) 
+    	VALUES
+    		(#{id}, #{name}, #{value}, #{typeId}, #{createTime});
+    </insert>
+    <delete id="deleteTabCategory" parameterType="String">
+    	DELETE FROM tab_category WHERE id = #{id};
+    </delete>
+    <update id="updateTabCategory">
+    	UPDATE tab_category SET 
+    		name = #{name}, value = #{value}, type_id = #{typeId}
+    	WHERE id = #{id};
+    </update>
+</mapper>

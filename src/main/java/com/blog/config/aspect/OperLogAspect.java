@@ -80,10 +80,9 @@ public class OperLogAspect {
 		}
 		// 获取方法参数
 		Object[] obj = joinPoint.getArgs();
-		if (obj.length > 0) {
+		if (obj.length > 0 && obj[0] != null) {
 			logContent = ResolveMethodParameter.resolveObj(obj[0]);
 		}
-		log.info("获取方法参数");
 		if ("".equals(operateModule)) {
 			hasRecord = false;
 		}
