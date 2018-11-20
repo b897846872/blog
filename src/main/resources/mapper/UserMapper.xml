@@ -4,8 +4,8 @@
     <select id="findUserAll" resultType="sysUserPo" parameterType="String">
         select 
         	id, login_name as loginName, real_name as realName, password,
-        	create_time as createTime, update_time as updateTime,
-        	email, phone
+        	create_time as createTime, update_time as updateTime, 
+        	last_login_time as lastLoginTime, email, phone, status
         from sys_user
 		<if test="_parameter != null">
         	and ( login_name like CONCAT('%',#{searchValue},'%')

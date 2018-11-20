@@ -1,6 +1,7 @@
 package com.blog.model.po;
 
 import java.io.Serializable;
+import java.util.Date;
 /**
  * @author qi
  */
@@ -14,6 +15,8 @@ public class SysUserPo extends BasePo implements Serializable {
 	private String password;
 	private String email;
 	private String phone;
+	private Date lastLoginTime;
+	private String status;
 	
 	public String getLoginName() {
 		return loginName;
@@ -45,7 +48,16 @@ public class SysUserPo extends BasePo implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Date getLastLoginTime() {
+		return lastLoginTime;
+	}
+	public void setLastLoginTime(Date lastLoginTime) {
+		this.lastLoginTime = lastLoginTime;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
