@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	@OperLog(operateModule="查询所有用户")
-	public List<SysUserPo> findAllUser() {
-		return userMapper.findUserAll();
+	public List<SysUserPo> findAllUser(String searchValue) {
+		return userMapper.findUserAll(searchValue);
 	}
 	
 }

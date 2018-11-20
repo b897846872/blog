@@ -14,8 +14,8 @@ public class SysLogServiceImpl implements SysLogService {
 	SysLogMapper sysLogMapper;
 	
 	@Override
-	public List<SysLogPo> findSysLogAll() {
-		return sysLogMapper.findSysLogAll();
+	public List<SysLogPo> findSysLogAll(String searchValue) {
+		return sysLogMapper.findSysLogAll(searchValue);
 	}
 
 	@Override

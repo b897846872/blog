@@ -16,16 +16,19 @@ import org.slf4j.LoggerFactory;
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.po.SysConfigPo;
+import com.blog.model.po.TabCategoryPo;
+import com.blog.model.vo.TabCategoryVo;
 import com.blog.service.SysConfigService;
+import com.blog.service.TabCategoryService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-@RequestMapping("sysConfig")
+@RequestMapping("tabCategory")
 @RestController
-public class SysConfigController {
-	private static Logger log = LoggerFactory.getLogger(SysConfigController.class);
+public class TabCategoryController {
+	private static Logger log = LoggerFactory.getLogger(TabCategoryController.class);
 	@Autowired
-	private SysConfigService sysConfigService;
+	private TabCategoryService tabCategoryService;
 	
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
@@ -33,29 +36,28 @@ public class SysConfigController {
 									@RequestParam(required = true) String pageSize,
 									@RequestParam(required = true) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<SysConfigPo> sysConfigPageInfo = new PageInfo<>(sysConfigService.findSysConfigAll(searchValue));
-        log.info("系统配置列表", sysConfigPageInfo);
-		return ResponseResultUtil.success(sysConfigPageInfo);
+        PageInfo<TabCategoryVo> tabCategoryPageInfo = new PageInfo<>(tabCategoryService.findTabCategoryAll(searchValue));
+		return ResponseResultUtil.success(tabCategoryPageInfo);
 	}
 	
 	@PutMapping("save")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult save(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.saveSysConfig(sysConfigPo);
+	public ResponseResult save(@RequestBody TabCategoryPo tabCategoryPo){
+		tabCategoryService.saveTabCategory(tabCategoryPo);
 		return ResponseResultUtil.success();
 	}
 	
 	@DeleteMapping("delete")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult delete(@RequestParam String id){
-		sysConfigService.deleteSysConfig(id);
+		tabCategoryService.deleteTabCategory(id);
 		return ResponseResultUtil.success();
 	}
 	
 	@PutMapping("update")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult update(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.updateSysConfig(sysConfigPo);
+	public ResponseResult update(@RequestBody TabCategoryPo tabCategoryPo){
+		tabCategoryService.updateTabCategory(tabCategoryPo);
 		return ResponseResultUtil.success();
 	}
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import com.blog.model.po.SysConfigPo;
 
 public interface SysConfigService {
-	List<SysConfigPo> findSysConfigAll();
+	List<SysConfigPo> findSysConfigAll(String searchValue);
 	void saveSysConfig(SysConfigPo sysconfigPo);
 	void deleteSysConfig(String id);
 	void updateSysConfig(SysConfigPo sysconfigPo);

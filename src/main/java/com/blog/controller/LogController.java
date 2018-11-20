@@ -29,9 +29,10 @@ public class LogController {
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
-									@RequestParam(required = true) String pageSize) {
+									@RequestParam(required = true) String pageSize,
+									@RequestParam(required = false) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<SysLogPo> logPageInfo = new PageInfo<>(sysLogService.findSysLogAll());
+        PageInfo<SysLogPo> logPageInfo = new PageInfo<>(sysLogService.findSysLogAll(searchValue));
         log.info("系统日志列表", logPageInfo);
 		return ResponseResultUtil.success(logPageInfo);
 	}

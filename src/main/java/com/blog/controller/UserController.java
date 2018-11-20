@@ -25,9 +25,10 @@ public class UserController {
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
-									@RequestParam(required = true) String pageSize) {
+									@RequestParam(required = true) String pageSize,
+									@RequestParam(required = false) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<SysUserPo> userPageInfo = new PageInfo<>(userService.findAllUser());
+        PageInfo<SysUserPo> userPageInfo = new PageInfo<>(userService.findAllUser(searchValue));
         log.info("用户列表", userPageInfo);
 		return ResponseResultUtil.success(userPageInfo);
 	}

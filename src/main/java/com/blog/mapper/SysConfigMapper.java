@@ -11,7 +11,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 public interface SysConfigMapper extends BaseMapper<SysConfigPo>{
-	List<SysConfigPo> findSysConfigAll();
+	List<SysConfigPo> findSysConfigAll(String searchValue);
 	void saveSysConfig(SysConfigPo sysconfigPo);
 	void deleteSysConfig(String id);
 	void updateSysConfig(SysConfigPo sysconfigPo);

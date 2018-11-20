@@ -10,5 +10,5 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 public interface UserMapper extends BaseMapper<SysUserPo>{
-	List<SysUserPo> findUserAll();
+	List<SysUserPo> findUserAll(String searchValue);
 }

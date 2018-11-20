@@ -16,46 +16,40 @@ import org.slf4j.LoggerFactory;
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.po.SysConfigPo;
+import com.blog.model.po.TabCommentPo;
 import com.blog.service.SysConfigService;
+import com.blog.service.TabCommentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
-@RequestMapping("sysConfig")
+@RequestMapping("tabComment")
 @RestController
-public class SysConfigController {
-	private static Logger log = LoggerFactory.getLogger(SysConfigController.class);
+public class TabCommentController {
+	private static Logger log = LoggerFactory.getLogger(TabCommentController.class);
 	@Autowired
-	private SysConfigService sysConfigService;
+	private TabCommentService tabCommentService;
 	
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
 									@RequestParam(required = true) String pageSize,
-									@RequestParam(required = true) String searchValue) {
+									@RequestParam(required = true) String articleId) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<SysConfigPo> sysConfigPageInfo = new PageInfo<>(sysConfigService.findSysConfigAll(searchValue));
-        log.info("系统配置列表", sysConfigPageInfo);
-		return ResponseResultUtil.success(sysConfigPageInfo);
+        PageInfo<TabCommentPo> tabCommentPageInfo = new PageInfo<>(tabCommentService.findTabCommentAll(articleId));
+		return ResponseResultUtil.success(tabCommentPageInfo);
 	}
 	
 	@PutMapping("save")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult save(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.saveSysConfig(sysConfigPo);
+	public ResponseResult save(@RequestBody TabCommentPo tabCommentPo){
+		tabCommentService.saveTabComment(tabCommentPo);
 		return ResponseResultUtil.success();
 	}
 	
 	@DeleteMapping("delete")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult delete(@RequestParam String id){
-		sysConfigService.deleteSysConfig(id);
-		return ResponseResultUtil.success();
-	}
-	
-	@PutMapping("update")
-	@SuppressWarnings("rawtypes")
-	public ResponseResult update(@RequestBody SysConfigPo sysConfigPo){
-		sysConfigService.updateSysConfig(sysConfigPo);
+		tabCommentService.deleteTabComment(id);
 		return ResponseResultUtil.success();
 	}
 }

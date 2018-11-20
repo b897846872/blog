@@ -11,6 +11,6 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 public interface SysLogMapper extends BaseMapper<SysLogPo>{
-	List<SysLogPo> findSysLogAll();
+	List<SysLogPo> findSysLogAll(String searchValue);
 	void saveSysLog(SysLogPo logPo);
 }
