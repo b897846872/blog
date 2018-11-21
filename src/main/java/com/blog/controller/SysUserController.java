@@ -11,16 +11,16 @@ import org.slf4j.LoggerFactory;
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.po.SysUserPo;
-import com.blog.service.UserService;
+import com.blog.service.SysUserService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @RequestMapping("user")
 @RestController
-public class UserController {
-	private static Logger log = LoggerFactory.getLogger(UserController.class);
+public class SysUserController {
+	private static Logger log = LoggerFactory.getLogger(SysUserController.class);
 	@Autowired
-	private UserService userService;
+	private SysUserService userService;
 	
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")

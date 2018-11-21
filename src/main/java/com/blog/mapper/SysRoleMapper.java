@@ -4,11 +4,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.blog.model.po.SysUserPo;
+import com.blog.model.po.SysRolePo;
 
 import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
-public interface UserMapper extends BaseMapper<SysUserPo>{
-	List<SysUserPo> findUserAll(String searchValue);
+public interface SysRoleMapper extends BaseMapper<SysRolePo>{
+	List<SysRolePo> findSysRoleByUserId(String userId);
 }

@@ -46,7 +46,7 @@ public class OperLogAspect {
 	/**
 	 * 登录拦截
 	 */
-	@Pointcut("execution(* com.blog.controller.UserController.*(..))")
+	@Pointcut("execution(* com.blog.controller.SysUserController.*(..))")
 	public void logLogin() {
 	}
 

@@ -70,16 +70,13 @@ public class ShiroConfiguration {
 //        logoutFilter.setRedirectUrl("/login");
 //        filters.put("logout", logoutFilter);
 //        shiroFilterFactoryBean.setFilters(filters);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         Map<String, String> filterChainDefinitionManager = new LinkedHashMap();
         filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
-        filterChainDefinitionManager.put("/shop/**", "authc,roles[shop]");
-        filterChainDefinitionManager.put("/admin/**", "authc,roles[admin]");
+        filterChainDefinitionManager.put("/user/**", "authc,roles[admin]");
         filterChainDefinitionManager.put("/login", "anon");//anon 可以理解为不拦截
         filterChainDefinitionManager.put("/ajaxLogin", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/statistic/**",  "anon");//静态资源不拦截
-        filterChainDefinitionManager.put("/**",  "authc,roles[user]");//其他资源全部拦截
+        filterChainDefinitionManager.put("/index", "anon");//anon 可以理解为不拦截
+        filterChainDefinitionManager.put("/**",  "authc");//其他资源全部拦截
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 
         shiroFilterFactoryBean.setLoginUrl("/login");

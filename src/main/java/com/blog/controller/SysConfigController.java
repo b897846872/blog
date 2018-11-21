@@ -31,7 +31,7 @@ public class SysConfigController {
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
 									@RequestParam(required = true) String pageSize,
-									@RequestParam(required = true) String searchValue) {
+									@RequestParam(required = false) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         PageInfo<SysConfigPo> sysConfigPageInfo = new PageInfo<>(sysConfigService.findSysConfigAll(searchValue));
         log.info("系统配置列表", sysConfigPageInfo);

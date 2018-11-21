@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.SysUserMapper">
+    <select id="findUserAll" resultType="sysUserPo" parameterType="String">
+        select 
+        	id, login_name as loginName, real_name as realName, password,
+        	create_time as createTime, update_time as updateTime, 
+        	last_login_time as lastLoginTime, email, phone, status
+        from sys_user
+		<if test="_parameter != null">
+        	and ( login_name like CONCAT('%',#{searchValue},'%')
+        	or real_name like CONCAT('%',#{searchValue},'%') )
+        </if>
+    </select>
+    <select id="findUserById" resultType="sysUserVo" parameterType="String">
+        select 
+        	id, login_name as loginName, real_name as realName, password,
+        	create_time as createTime, update_time as updateTime, 
+        	last_login_time as lastLoginTime, email, phone, status
+        from sys_user where id = #{id}
+    </select>
+    <select id="findUserByLoginName" resultType="sysUserVo" parameterType="String">
+        select 
+        	id, login_name as loginName, real_name as realName, password,
+        	create_time as createTime, update_time as updateTime, 
+        	last_login_time as lastLoginTime, email, phone, status
+        from sys_user where login_name = #{loginName}
+    </select>
+</mapper>
