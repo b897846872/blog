@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-11-20 16:59:03
+Date: 2018-11-23 16:31:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,6 +23,7 @@ CREATE TABLE `sys_config` (
   `id` varchar(32) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `value` varchar(500) DEFAULT NULL,
+  `user_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -41,6 +42,7 @@ CREATE TABLE `sys_dic` (
   `dic_name` varchar(255) DEFAULT NULL,
   `dic_code` varchar(255) DEFAULT NULL,
   `dic_type` varchar(255) DEFAULT NULL,
+  `user_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -49,10 +51,10 @@ CREATE TABLE `sys_dic` (
 -- ----------------------------
 -- Records of sys_dic
 -- ----------------------------
-INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567931', '文章', 'article', 'BLOGTYPE', '2018-11-19 15:15:10', '2018-11-19 15:15:10');
-INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567932', '随笔', 'essay', 'BLOGTYPE', '2018-11-19 15:15:11', '2018-11-19 15:15:11');
-INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567933', '相册', 'album', 'BLOGTYPE', '2018-11-19 15:15:11', '2018-11-19 15:15:11');
-INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567934', '资源', 'resource', 'BLOGTYPE', '2018-11-19 15:15:11', '2018-11-19 15:15:11');
+INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567931', '文章', 'article', 'BLOGTYPE', null, '2018-11-19 15:15:10', '2018-11-19 15:15:10');
+INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567932', '随笔', 'essay', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
+INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567933', '相册', 'album', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
+INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567934', '资源', 'resource', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -81,10 +83,12 @@ INSERT INTO `sys_log` VALUES ('1B33A01F99841C62E015426974053801', '10.100.51.59'
 INSERT INTO `sys_log` VALUES ('1E541CDB1DF3F1144815423516824861', '10.100.51.59', 'admin', '查询所有用户', '', '2018-11-16 15:01:22', null);
 INSERT INTO `sys_log` VALUES ('2D015185817729583315426057457211', '10.100.51.59', 'admin', '查询系统字典', '开机', '2018-11-19 13:35:45', null);
 INSERT INTO `sys_log` VALUES ('36676AAB216182947A15426968778361', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 14:54:37', null);
+INSERT INTO `sys_log` VALUES ('3B35CEEE0E2587A39715427906597041', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:57:39', null);
 INSERT INTO `sys_log` VALUES ('3D62FDE1A49E9F8E4615426059955351', '10.100.51.59', 'admin', '查询系统字典', '开机', '2018-11-19 13:39:55', null);
 INSERT INTO `sys_log` VALUES ('4209788A9C5889DAE915426022977301', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-19 12:38:17', null);
 INSERT INTO `sys_log` VALUES ('4209788A9C5889DAE915426023272942', '10.100.51.59', 'admin', '查询系统字典', '1', '2018-11-19 12:38:47', null);
 INSERT INTO `sys_log` VALUES ('4209788A9C5889DAE915426023678803', '10.100.51.59', 'admin', '查询系统字典', 'as', '2018-11-19 12:39:27', null);
+INSERT INTO `sys_log` VALUES ('4A7D21131B455A47F015427879420691', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:12:22', null);
 INSERT INTO `sys_log` VALUES ('545905D77BCD2A245115426960240631', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=}', '2018-11-20 14:40:24', null);
 INSERT INTO `sys_log` VALUES ('545905D77BCD2A245115426960724322', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=}', '2018-11-20 14:41:12', null);
 INSERT INTO `sys_log` VALUES ('562D12AC476F7B46D515423508618471', '10.100.51.59', 'admin', '查询所有用户', '[Ljava.lang.Object;@26138e28', '2018-11-16 14:47:41', null);
@@ -96,6 +100,8 @@ INSERT INTO `sys_log` VALUES ('5DD2BE150D03FF6D1915426031294894', '10.100.51.59'
 INSERT INTO `sys_log` VALUES ('5DD2BE150D03FF6D1915426031306795', '10.100.51.59', 'admin', '查询系统字典', 'off', '2018-11-19 12:52:10', null);
 INSERT INTO `sys_log` VALUES ('5DE184BA99A6789F1B15426980652601', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 15:14:25', null);
 INSERT INTO `sys_log` VALUES ('5F9ADEE657D486747915426037698661', '10.100.51.59', 'admin', '查询系统字典', '开机', '2018-11-19 13:02:49', null);
+INSERT INTO `sys_log` VALUES ('62BBF6F2C8E8EE454A15427865558991', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 15:49:15', null);
+INSERT INTO `sys_log` VALUES ('661361818E377023AF15429552489331', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-23 14:40:48', null);
 INSERT INTO `sys_log` VALUES ('67354379A1DF01CE0A15426061720951', '10.100.51.59', 'admin', '查询系统字典', '开机', '2018-11-19 13:42:52', null);
 INSERT INTO `sys_log` VALUES ('69314F249EFCD8576415426034875661', '10.100.51.59', 'admin', '查询系统字典', 'off', '2018-11-19 12:58:07', null);
 INSERT INTO `sys_log` VALUES ('8132498FCD2259FFF815426963906221', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=}', '2018-11-20 14:46:30', null);
@@ -105,7 +111,11 @@ INSERT INTO `sys_log` VALUES ('8E8C715ED49E1C7A4715426065775231', '10.100.51.59'
 INSERT INTO `sys_log` VALUES ('8E8C715ED49E1C7A4715426069328122', '10.100.51.59', 'admin', '修改系统字典编码', 'com.blog.model.po.SysDicPo@2dac9123', '2018-11-19 13:55:32', null);
 INSERT INTO `sys_log` VALUES ('8E8C715ED49E1C7A4715426069521603', '10.100.51.59', 'admin', '修改系统字典类型', 'com.blog.model.po.SysDicPo@2ffdc0fb', '2018-11-19 13:55:52', null);
 INSERT INTO `sys_log` VALUES ('8E8C715ED49E1C7A4715426069703634', '10.100.51.59', 'admin', '修改系统字典类型', 'com.blog.model.po.SysDicPo@633f4766', '2018-11-19 13:56:10', null);
+INSERT INTO `sys_log` VALUES ('9239B7C68D5A19261B15427866171421', '10.100.51.59', 'admin', '查询系统配置', '', '2018-11-21 15:50:17', null);
+INSERT INTO `sys_log` VALUES ('9239B7C68D5A19261B15427866452412', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 15:50:45', null);
 INSERT INTO `sys_log` VALUES ('92DE7CCC5A58034A8215426972757941', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 15:01:15', null);
+INSERT INTO `sys_log` VALUES ('93D165E549D61CD9BB15429553105891', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-23 14:41:50', null);
+INSERT INTO `sys_log` VALUES ('93D165E549D61CD9BB15429553498502', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-23 14:42:29', null);
 INSERT INTO `sys_log` VALUES ('9B7E3766D891D9258815426949673281', '10.100.51.59', 'admin', '保存分类', 'com.blog.model.po.TabCategoryPo@1f1f5c48', '2018-11-20 14:22:47', null);
 INSERT INTO `sys_log` VALUES ('9B7E3766D891D9258815426952000873', '10.100.51.59', 'admin', '保存文章', 'com.blog.model.po.TabArticlePo@7dd643b8', '2018-11-20 14:26:40', null);
 INSERT INTO `sys_log` VALUES ('9E2A3D52507B176DC915426062563481', '10.100.51.59', 'admin', '查询系统字典', '开机', '2018-11-19 13:44:16', null);
@@ -128,7 +138,11 @@ INSERT INTO `sys_log` VALUES ('D68167E839C311C8B115426028428262', '10.100.51.59'
 INSERT INTO `sys_log` VALUES ('D68167E839C311C8B115426028566864', '10.100.51.59', 'admin', '保存系统字典', 'com.blog.model.po.SysDicPo@1c0bbd41', '2018-11-19 12:47:36', null);
 INSERT INTO `sys_log` VALUES ('D68167E839C311C8B115426029647426', '10.100.51.59', 'admin', '查询系统字典', 'o', '2018-11-19 12:49:24', null);
 INSERT INTO `sys_log` VALUES ('D858D67ACA49E7858015426978647721', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 15:11:04', null);
+INSERT INTO `sys_log` VALUES ('DD3C3B65A966D2547615427886935711', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:24:53', null);
 INSERT INTO `sys_log` VALUES ('E3BA1D8743B95656A615426979420461', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 15:12:22', null);
+INSERT INTO `sys_log` VALUES ('E671F7F29914EFFE7615427883485921', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:19:08', null);
+INSERT INTO `sys_log` VALUES ('E671F7F29914EFFE7615427883968082', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:19:56', null);
+INSERT INTO `sys_log` VALUES ('E671F7F29914EFFE7615427883992793', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:19:59', null);
 INSERT INTO `sys_log` VALUES ('E79D7931350B96FFB815426024085351', '10.100.51.59', 'admin', '查询系统字典', 'as', '2018-11-19 12:40:08', null);
 INSERT INTO `sys_log` VALUES ('EB992627C8094CBD9115423514719981', '10.100.51.59', 'admin', '查询所有用户', '[Ljava.lang.Object;@2d0563d5', '2018-11-16 14:57:51', null);
 INSERT INTO `sys_log` VALUES ('EBC561F3C92F7C933F15426972563231', '10.100.51.59', 'admin', '查询文章', '{typeId=, categoryId=9B7E3766D891D9258815426949681162}', '2018-11-20 15:00:56', null);
@@ -146,6 +160,8 @@ INSERT INTO `sys_log` VALUES ('F5F85CE98A2F80FEE515426076511975', '10.100.51.59'
 INSERT INTO `sys_log` VALUES ('F5F85CE98A2F80FEE515426076832146', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-19 14:08:03', null);
 INSERT INTO `sys_log` VALUES ('F5F85CE98A2F80FEE515426076858777', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-19 14:08:05', null);
 INSERT INTO `sys_log` VALUES ('F8A958930541E23D7C15426077771841', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-19 14:09:37', null);
+INSERT INTO `sys_log` VALUES ('F9342C0102ADFFE4CA15427907687301', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:59:28', null);
+INSERT INTO `sys_log` VALUES ('F9342C0102ADFFE4CA15427907870322', '10.100.51.59', 'admin', '查询系统字典', '', '2018-11-21 16:59:47', null);
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -163,7 +179,8 @@ CREATE TABLE `sys_permission` (
 -- ----------------------------
 -- Records of sys_permission
 -- ----------------------------
-INSERT INTO `sys_permission` VALUES ('1', '/user', 'usermanager', '2018-11-20 16:56:49', '2018-11-20 16:56:49');
+INSERT INTO `sys_permission` VALUES ('1', '/user/list', 'userManager', '2018-11-20 16:56:49', '2018-11-20 16:56:49');
+INSERT INTO `sys_permission` VALUES ('2', '/sysDic', 'sysDicManager', '2018-11-21 10:33:44', null);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -196,6 +213,7 @@ CREATE TABLE `sys_role_permission` (
 -- Records of sys_role_permission
 -- ----------------------------
 INSERT INTO `sys_role_permission` VALUES ('1', '1');
+INSERT INTO `sys_role_permission` VALUES ('1', '2');
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -219,6 +237,7 @@ CREATE TABLE `sys_user` (
 -- Records of sys_user
 -- ----------------------------
 INSERT INTO `sys_user` VALUES ('1', 'admin', 'admin', '123456', '123456', '123456@163.com', '2017-05-10 20:22:59', '1', '2018-11-20 16:56:51', '2018-11-20 16:56:51');
+INSERT INTO `sys_user` VALUES ('2', 'test', 'test', '123', '123', null, null, '1', null, null);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -255,9 +274,9 @@ CREATE TABLE `tab_article` (
 -- ----------------------------
 -- Records of tab_article
 -- ----------------------------
-INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426952877012', 'java基础', null, '基础很重要的，基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:07', null);
-INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953327194', 'spring', null, 'springspringspringspring', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:52', null);
-INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953631576', 'nginx', null, 'nginxnginxnginxnginxnginxnginxnginxnginxnginx', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:29:23', null);
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426952877012', 'java基础', '1', '基础很重要的，基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:07', null);
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953327194', 'spring', '1', 'springspringspringspring', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:52', null);
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953631576', 'nginx', '1', 'nginxnginxnginxnginxnginxnginxnginxnginxnginx', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:29:23', null);
 
 -- ----------------------------
 -- Table structure for tab_category
@@ -268,6 +287,7 @@ CREATE TABLE `tab_category` (
   `name` varchar(100) DEFAULT NULL,
   `value` varchar(500) DEFAULT NULL,
   `type_id` varchar(32) DEFAULT NULL,
+  `user_id` varchar(32) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
@@ -276,7 +296,7 @@ CREATE TABLE `tab_category` (
 -- ----------------------------
 -- Records of tab_category
 -- ----------------------------
-INSERT INTO `tab_category` VALUES ('9B7E3766D891D9258815426949681162', '技术', 'technology', 'D68167E839C311C8B115426028567931', '2018-11-20 14:22:48', null);
+INSERT INTO `tab_category` VALUES ('9B7E3766D891D9258815426949681162', '技术', 'technology', 'D68167E839C311C8B115426028567931', null, '2018-11-20 14:22:48', null);
 
 -- ----------------------------
 -- Table structure for tab_comment
