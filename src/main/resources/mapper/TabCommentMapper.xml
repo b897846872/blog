@@ -6,7 +6,7 @@
         	c.id, c.content, c.create_time as createTime, 
         	c.update_time as updateTime
         FROM tab_comment c
-        left join sys_user u on u.id = c.user_id
+        <!-- left join sys_user u on u.id = c.user_id -->
         WHERE 1=1
 		<if test="_parameter != null">
         	and article_id = #{articleId}

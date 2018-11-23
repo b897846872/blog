@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 /**
- * UUID generator (taken from Axis2)
+ * 获取32位UUID
  */
 public final class UUIDGenerator {
 

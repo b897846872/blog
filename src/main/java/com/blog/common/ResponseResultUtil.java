@@ -2,6 +2,10 @@ package com.blog.common;
 
 import com.blog.model.ResponseResult;
 
+/**
+ * 封装返回结果
+ * @author qi
+ */
 public class ResponseResultUtil {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ResponseResult success(Object obj){

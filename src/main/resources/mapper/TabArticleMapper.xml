@@ -7,10 +7,12 @@
         	a.type_id as typeId,  a.clicks as clicks, a.is_Original as hasOriginal, 
         	a.create_time as createTime, a.update_time as updateTime,
         	c.name as categoryName, c.value as categoryValue,
-        	d.dic_name as dicName, dic_code as dicCode, dic_type as dicType
+        	d.dic_name as dicName, dic_code as dicCode, dic_type as dicType,
+        	u.login_name as loginName, u.id as userId
         FROM tab_article a 
         left join tab_category c on c.id = a.category_id 
-        left join sys_dic d on d.id = a.type_id 
+        left join sys_dic d on d.id = a.type_id
+        left join sys_user u on u.id = a.user_id
         WHERE 1=1
         <if test="typeId != null and typeId != ''">
         	and a.type_id = #{typeId}

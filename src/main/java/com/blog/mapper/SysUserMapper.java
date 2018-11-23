@@ -14,4 +14,9 @@ public interface SysUserMapper extends BaseMapper<SysUserPo>{
 	List<SysUserPo> findUserAll(String searchValue);
 	List<SysUserVo> findUserById(String id);
 	List<SysUserVo> findUserByLoginName(String loginName);
+	void saveSysUser(SysUserPo sysUserPo);
+	void deleteSysUser(String id);
+	void updateSysUser(SysUserPo sysUserPo);
+	void updatePassword(SysUserPo sysUserPo);
+	void updateSysUserToLoginTime(SysUserPo sysUserPo);
 }

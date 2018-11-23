@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.common.Common;
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.TabCategoryMapper;
 import com.blog.model.annotation.OperLog;
@@ -29,6 +30,7 @@ public class TabCategoryServiceImpl implements TabCategoryService {
 	public void saveTabCategory(TabCategoryPo tabCategoryPo) {
 		tabCategoryPo.setId(UUIDGenerator.getUUID());
 		tabCategoryPo.setCreateTime(new Date());
+		tabCategoryPo.setUserId(Common.getCurrentUserId());
 		tabCategoryMapper.saveTabCategory(tabCategoryPo);
 	}
 

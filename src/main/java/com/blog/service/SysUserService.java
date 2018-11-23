@@ -9,4 +9,9 @@ public interface SysUserService {
 	List<SysUserPo> findAllUser(String searchValue);
 	SysUserVo findUserById(String id);
 	SysUserVo findUserByLoginName(String loginName);
+	void saveSysUser(SysUserPo sysUserPo);
+	void deleteSysUser(String id);
+	void updateSysUser(SysUserPo sysUserPo);
+	void updatePassword(SysUserPo sysUserPo);
+	void updateSysUserToLoginTime(SysUserPo sysUserPo);
 }	

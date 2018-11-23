@@ -8,16 +8,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
-import com.blog.model.po.SysConfigPo;
 import com.blog.model.po.SysDicPo;
-import com.blog.service.SysConfigService;
 import com.blog.service.SysDicService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

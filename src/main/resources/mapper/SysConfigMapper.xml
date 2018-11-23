@@ -3,18 +3,28 @@
 <mapper namespace="com.blog.mapper.SysConfigMapper">
     <select id="findSysConfigAll" resultType="sysConfigPo" parameterType="String">
         SELECT 
-        	id, name, value, create_time as createTime, update_time as updateTime
-        FROM sys_config
+        	c.id as id, c.name as name, c.value as value, 
+        	c.create_time as createTime, c.update_time as updateTime,
+        	u.id as userId, u.login_name as loginName
+        FROM sys_config c
+        LEFT JOIN sys_user u ON u.id = c.user_id 
+        where 1=1
 		<if test="_parameter != null">
         	and ( name like CONCAT('%',#{searchValue},'%')
         	or UPPER(value) like UPPER(CONCAT('%',#{searchValue},'%')) )
         </if>
     </select>
+    <select id="findSysConfigByName" resultType="sysConfigPo" parameterType="String">
+        SELECT 
+        	id, name, value, create_time as createTime, update_time as updateTime
+        FROM sys_config 
+        WHERE name = #{name};
+    </select>
     <insert id="saveSysConfig">
     	INSERT INTO sys_config
-    		(id, name, value, create_time) 
+    		(id, name, value, user_id, create_time) 
     	VALUES
-    		(#{id}, #{name}, #{value}, #{createTime});
+    		(#{id}, #{name}, #{value}, #{userId}, #{createTime});
     </insert>
     <delete id="deleteSysConfig" parameterType="String">
     	DELETE FROM sys_config WHERE id = #{id};

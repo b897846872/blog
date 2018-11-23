@@ -10,7 +10,6 @@ public class TabArticleVo extends BasePo implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
-	private String userId;
 	private String content;
 	private String categoryId;
 	private String typeId;
@@ -26,12 +25,6 @@ public class TabArticleVo extends BasePo implements Serializable{
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	public String getContent() {
 		return content;

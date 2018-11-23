@@ -1,10 +1,12 @@
 package com.blog.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysUserMapper;
 import com.blog.model.annotation.OperLog;
 import com.blog.model.po.SysUserPo;
@@ -39,6 +41,41 @@ public class SysUserServiceImpl implements SysUserService {
 			sysUser = list.get(0);
 		}
 		return sysUser;
+	}
+
+	@Override
+	@OperLog(operateModule="保存用户")
+	public void saveSysUser(SysUserPo sysUserPo) {
+		sysUserPo.setId(UUIDGenerator.getUUID());
+		sysUserPo.setCreateTime(new Date());
+		userMapper.saveSysUser(sysUserPo);
+	}
+
+	@Override
+	@OperLog(operateModule="删除用户")
+	public void deleteSysUser(String id) {
+		userMapper.deleteSysUser(id);
+	}
+
+	@Override
+	@OperLog(operateModule="修改用户")
+	public void updateSysUser(SysUserPo sysUserPo) {
+		sysUserPo.setUpdateTime(new Date());
+		userMapper.updateSysUser(sysUserPo);
+	}
+
+	@Override
+	@OperLog(operateModule="修改密码")
+	public void updatePassword(SysUserPo sysUserPo) {
+		sysUserPo.setUpdateTime(new Date());
+		userMapper.updatePassword(sysUserPo);
+	}
+
+	@Override
+	@OperLog(operateModule="修改最后登录时间")
+	public void updateSysUserToLoginTime(SysUserPo sysUserPo) {
+		sysUserPo.setUpdateTime(new Date());
+		userMapper.updateSysUserToLoginTime(sysUserPo);
 	}
 	
 }

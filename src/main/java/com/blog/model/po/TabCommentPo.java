@@ -8,19 +8,12 @@ public class TabCommentPo extends BasePo implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String articleId;
-	private String userId;
 	private String content;
 	public String getArticleId() {
 		return articleId;
 	}
 	public void setArticleId(String articleId) {
 		this.articleId = articleId;
-	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
 	}
 	public String getContent() {
 		return content;

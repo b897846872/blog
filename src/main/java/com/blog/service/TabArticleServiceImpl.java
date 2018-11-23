@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.common.Common;
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.TabArticleMapper;
 import com.blog.model.annotation.OperLog;
@@ -29,6 +30,7 @@ public class TabArticleServiceImpl implements TabArticleService {
 	public void saveTabArticle(TabArticlePo tabArticlePo) {
 		tabArticlePo.setId(UUIDGenerator.getUUID());
 		tabArticlePo.setCreateTime(new Date());
+		tabArticlePo.setUserId(Common.getCurrentUserId());
 		tabArticleMapper.saveTabArticle(tabArticlePo);
 	}
 

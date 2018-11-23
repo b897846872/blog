@@ -122,13 +122,9 @@ public class OperLogAspect {
 			log.error("获取本机IP失败", e);
 		}
 		SysLogPo logPo = new SysLogPo();
-		String id = UUIDGenerator.getUUID();
 		logPo.setIp(ip);
-		logPo.setId(id);
 		logPo.setLogContent(logContent);
-		logPo.setOperateUser("admin");
 		logPo.setOperateModule(operateModule);
-		logPo.setCreateTime(new Date());
 		try {
 			sysLogService.saveSysLog(logPo);
 		} catch (Exception e) {

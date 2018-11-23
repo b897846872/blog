@@ -10,4 +10,18 @@
 			LEFT JOIN sys_permission p on p.id = rp.pid
 		WHERE u.id = #{userId}
     </select>
+    <insert id="saveSysPermission">
+    	INSERT INTO sys_permission
+    		(id, url, name, create_time) 
+    	VALUES
+    		(#{id}, #{url}, #{name}, #{createTime});
+    </insert>
+    <delete id="deleteSysPermission" parameterType="String">
+    	DELETE FROM sys_permission WHERE id = #{id};
+    </delete>
+    <update id="updateSysPermission">
+    	UPDATE sys_permission SET
+    		url = #{url}, name = #{name}, update_time = #{updateTime}
+    	WHERE id = #{id};
+    </update>
 </mapper>

@@ -4,9 +4,11 @@
     <select id="findTabCategoryAll" resultType="tabCategoryVo" parameterType="String">
         SELECT 
         	c.id, c.name, c.value, d.dic_name as dicName, d.dic_value as dicValue,
-        	d.dic_type as dicType, c.create_time as createTime, c.update_time as updateTime
+        	d.dic_type as dicType, c.create_time as createTime, c.update_time as updateTime,
+        	u.id as userId, u.login_name as loginName
         FROM tab_category c
         left join sys_dic d on d.id = c.type_id
+        left join sys_user u on u.id = c.user_id
         WHERE 1=1
         <if test="_parameter != null">
         	and (name like CONCAT('%',#{searchValue},'%')
@@ -15,9 +17,9 @@
     </select>
     <insert id="saveTabCategory">
     	INSERT INTO tab_category
-    		(id, name, value, type_id, create_time) 
+    		(id, name, value, type_id, user_id, create_time) 
     	VALUES
-    		(#{id}, #{name}, #{value}, #{typeId}, #{createTime});
+    		(#{id}, #{name}, #{value}, #{typeId}, #{userId}, #{createTime});
     </insert>
     <delete id="deleteTabCategory" parameterType="String">
     	DELETE FROM tab_category WHERE id = #{id};

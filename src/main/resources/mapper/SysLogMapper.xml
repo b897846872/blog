@@ -3,9 +3,12 @@
 <mapper namespace="com.blog.mapper.SysLogMapper">
     <select id="findSysLogAll" resultType="sysLogPo" parameterType="String">
         SELECT 
-        	id, ip, operate_user as operateUser, operate_module as operateModule,
-        	log_content as logContent, create_time as createTime, update_time as updateTime
-        FROM sys_log
+        	l.id as id, l.ip as ip, u.loginName as operateUser, l.operate_module as operateModule,
+        	l.log_content as logContent, l.create_time as createTime, l.update_time as updateTime,
+        	u.id as userId
+        FROM sys_log l
+        LEFT JOIN sys_user u ON u.id = l.user_id
+        where 1=1
 		<if test="_parameter != null">
         	and ( ip like CONCAT('%',#{searchValue},'%')
         	or operate_module like CONCAT('%',#{searchValue},'%') )

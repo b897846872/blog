@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.common.Common;
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysConfigMapper;
 import com.blog.model.annotation.OperLog;
@@ -27,6 +28,7 @@ public class SysConfigServiceImpl implements SysConfigService {
 	public void saveSysConfig(SysConfigPo sysconfigPo) {
 		sysconfigPo.setId(UUIDGenerator.getUUID());
 		sysconfigPo.setCreateTime(new Date());
+		sysconfigPo.setUserId(Common.getCurrentUserId());
 		sysConfigMapper.saveSysConfig(sysconfigPo);
 	}
 
@@ -41,6 +43,16 @@ public class SysConfigServiceImpl implements SysConfigService {
 	public void updateSysConfig(SysConfigPo sysconfigPo) {
 		sysconfigPo.setUpdateTime(new Date());
 		sysConfigMapper.updateSysConfig(sysconfigPo);
+	}
+
+	@Override
+	public SysConfigPo findSysConfigByName(String name) {
+		List<SysConfigPo> list = sysConfigMapper.findSysConfigByName(name);
+		SysConfigPo sysConfigPo = new SysConfigPo();
+		if (list.size() > 0){
+			sysConfigPo = list.get(0);
+		}
+		return sysConfigPo;
 	}
 
 }

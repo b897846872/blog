@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.blog.common.Common;
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysDicMapper;
 import com.blog.model.annotation.OperLog;
@@ -29,6 +30,7 @@ public class SysDicServiceImpl implements SysDicService {
 	public void saveSysDic(SysDicPo sysDicPo) {
 		sysDicPo.setId(UUIDGenerator.getUUID());
 		sysDicPo.setCreateTime(new Date());
+		sysDicPo.setUserId(Common.getCurrentUserId());
 		sysDicMapper.saveSysDic(sysDicPo);
 	}
 

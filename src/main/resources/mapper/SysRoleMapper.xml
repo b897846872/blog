@@ -11,4 +11,18 @@
         	and u.id = #{userId}
         </if>
     </select>
+    <insert id="saveSysRole">
+    	INSERT INTO sys_role
+    		(id, name, type,, create_time) 
+    	VALUES
+    		(#{id}, #{name}, #{type}, #{createTime});
+    </insert>
+    <delete id="deleteSysRole" parameterType="String">
+    	DELETE FROM sys_role WHERE id = #{id};
+    </delete>
+    <update id="updateSysRole">
+    	UPDATE sys_role SET 
+    		name = #{name}, type = #{type}, update_time = #{updateTime}
+    	WHERE id = #{id};
+    </update>
 </mapper>
