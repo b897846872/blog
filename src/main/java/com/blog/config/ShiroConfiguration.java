@@ -9,7 +9,10 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
@@ -20,7 +23,15 @@ import org.springframework.context.annotation.DependsOn;
  */
 @Configuration
 public class ShiroConfiguration {
-
+//	@Autowired
+//	private Myconfig myconfig;
+	
+	@Bean(name = "myconfig")
+	public Myconfig myconfig() {
+		Myconfig myconfig = new Myconfig();
+		return myconfig;
+	}
+	
     @Bean(name = "lifecycleBeanPostProcessor")
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
@@ -61,6 +72,7 @@ public class ShiroConfiguration {
     }
 
     @Bean(name = "shiroFilter")
+//    @ConfigurationProperties(prefix="shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager  securityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
@@ -70,14 +82,17 @@ public class ShiroConfiguration {
 //        logoutFilter.setRedirectUrl("/login");
 //        filters.put("logout", logoutFilter);
 //        shiroFilterFactoryBean.setFilters(filters);
-        Map<String, String> filterChainDefinitionManager = new LinkedHashMap();
-        filterChainDefinitionManager.put("/logout", "logout");
-        filterChainDefinitionManager.put("/user/**", "authc,roles[admin]");
-        filterChainDefinitionManager.put("/login", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/ajaxLogin", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/index", "anon");//anon 可以理解为不拦截
-        filterChainDefinitionManager.put("/**",  "authc");//其他资源全部拦截
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
+//        Map<String, String> filterChainDefinitionMap = new LinkedHashMap();
+//        filterChainDefinitionMap.put("/logout", "logout");
+//        filterChainDefinitionMap.put("/user/**", "authc,roles[admin]");
+//        filterChainDefinitionMap.put("/login", "anon");//anon 可以理解为不拦截
+//        filterChainDefinitionMap.put("/ajaxLogin", "anon");//anon 可以理解为不拦截
+//        filterChainDefinitionMap.put("/index", "anon");//anon 可以理解为不拦截
+//        filterChainDefinitionMap.put("/**",  "authc");//其他资源全部拦截
+//        System.out.println(shiroFilter.getName());
+        Myconfig myconfig = myconfig();
+        System.out.println(myconfig.getFilterChainDefinitionMap());
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(myconfig.getFilterChainDefinitionMap());
 
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
