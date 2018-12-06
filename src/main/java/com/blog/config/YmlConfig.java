@@ -6,8 +6,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="myProps")
-public class Myconfig {
+@ConfigurationProperties(prefix="props")
+public class YmlConfig {
 	private Map<String, String> filterChainDefinitionMap;
 
 	public Map<String, String> getFilterChainDefinitionMap() {

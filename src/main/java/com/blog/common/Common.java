@@ -8,7 +8,7 @@ import com.blog.model.vo.SysUserVo;
 public class Common {
 	
 	/**
-	 * 获取当前用户
+	 * 获取当前用户id
 	 * @return
 	 */
 	public static String getCurrentUserId(){
@@ -20,6 +20,10 @@ public class Common {
 		return "";
 	}
 	
+	/**
+	 * 获取当前登录名
+	 * @return
+	 */
 	public static String getCurrentUserName(){
         Session session = SecurityUtils.getSubject().getSession();
         SysUserVo sysUserVo = (SysUserVo) session.getAttribute("user");

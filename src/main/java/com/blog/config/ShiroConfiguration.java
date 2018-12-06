@@ -23,13 +23,11 @@ import org.springframework.context.annotation.DependsOn;
  */
 @Configuration
 public class ShiroConfiguration {
-//	@Autowired
-//	private Myconfig myconfig;
 	
-	@Bean(name = "myconfig")
-	public Myconfig myconfig() {
-		Myconfig myconfig = new Myconfig();
-		return myconfig;
+	@Bean(name = "ymlConfig")
+	public YmlConfig ymlConfig() {
+		YmlConfig ymlConfig = new YmlConfig();
+		return ymlConfig;
 	}
 	
     @Bean(name = "lifecycleBeanPostProcessor")
@@ -90,9 +88,9 @@ public class ShiroConfiguration {
 //        filterChainDefinitionMap.put("/index", "anon");//anon 可以理解为不拦截
 //        filterChainDefinitionMap.put("/**",  "authc");//其他资源全部拦截
 //        System.out.println(shiroFilter.getName());
-        Myconfig myconfig = myconfig();
-        System.out.println(myconfig.getFilterChainDefinitionMap());
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(myconfig.getFilterChainDefinitionMap());
+        YmlConfig ymlConfig = ymlConfig();
+        System.out.println(ymlConfig.getFilterChainDefinitionMap());
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(ymlConfig.getFilterChainDefinitionMap());
 
         shiroFilterFactoryBean.setLoginUrl("/login");
         shiroFilterFactoryBean.setSuccessUrl("/");
