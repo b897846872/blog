@@ -20,13 +20,13 @@ public class SysDicServiceImpl implements SysDicService {
 	
 	
 	@Override
-	@OperLog(operateModule="查询系统字典")
+	@OperLog(operateModule="查询数据字典")
 	public List<SysDicPo> findSysDicAll(String searchValue) {
 		return sysDicMapper.findSysDicAll(searchValue);
 	}
 
 	@Override
-	@OperLog(operateModule="保存系统字典")
+	@OperLog(operateModule="保存数据字典")
 	public void saveSysDic(SysDicPo sysDicPo) {
 		sysDicPo.setId(UUIDGenerator.getUUID());
 		sysDicPo.setCreateTime(new Date());
@@ -35,23 +35,22 @@ public class SysDicServiceImpl implements SysDicService {
 	}
 
 	@Override
-	@OperLog(operateModule="删除系统字典")
+	@OperLog(operateModule="删除数据字典")
 	public void deleteSysDic(String id) {
 		sysDicMapper.deleteSysDic(id);
 	}
 
 	@Override
-	@OperLog(operateModule="修改系统字典类型")
-	public void updateSysDicToDicType(SysDicPo sysDicPo) {
-		sysDicPo.setUpdateTime(new Date());
-		sysDicMapper.updateSysDicToDicType(sysDicPo);
+	@OperLog(operateModule="查询数据字典类型")
+	public List<SysDicPo> getDicType(String sysDicPo) {
+		return sysDicMapper.getDicType(sysDicPo);
 	}
 
 	@Override
-	@OperLog(operateModule="修改系统字典编码")
-	public void updateSysDicToDicCode(SysDicPo sysDicPo) {
+	@OperLog(operateModule="修改数据字典")
+	public void updateSysDic(SysDicPo sysDicPo) {
 		sysDicPo.setUpdateTime(new Date());
-		sysDicMapper.updateSysDicToDicCode(sysDicPo);
+		sysDicMapper.updateSysDic(sysDicPo);
 	}
 
 }

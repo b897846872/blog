@@ -9,6 +9,7 @@ public class SysConfigPo extends BasePo implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private String value;
+	private String remark;
 	public String getName() {
 		return name;
 	}
@@ -20,5 +21,11 @@ public class SysConfigPo extends BasePo implements Serializable{
 	}
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 }

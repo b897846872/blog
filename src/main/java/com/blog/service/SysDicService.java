@@ -10,6 +10,6 @@ public interface SysDicService {
 	List<SysDicPo> findSysDicAll(String searchValue);
 	void saveSysDic(SysDicPo sysDicPo);
 	void deleteSysDic(String id);
-	void updateSysDicToDicType(SysDicPo sysDicPo);
-	void updateSysDicToDicCode(SysDicPo sysDicPo);
+	List<SysDicPo> getDicType(String dicType);
+	void updateSysDic(SysDicPo sysDicPo);
 }	

@@ -14,10 +14,10 @@ public class Common {
 	public static String getCurrentUserId(){
         Session session = SecurityUtils.getSubject().getSession();
         SysUserVo sysUserVo = (SysUserVo) session.getAttribute("user");
-        if (sysUserVo.getId() != null) {
-        	return sysUserVo.getId();
+        if (sysUserVo == null) {
+        	return "1";
         }
-		return "";
+        return sysUserVo.getId();
 	}
 	
 	/**
@@ -27,9 +27,9 @@ public class Common {
 	public static String getCurrentUserName(){
         Session session = SecurityUtils.getSubject().getSession();
         SysUserVo sysUserVo = (SysUserVo) session.getAttribute("user");
-        if (sysUserVo.getLoginName() != null) {
-        	return sysUserVo.getLoginName();
+        if (sysUserVo == null) {
+        	return "admin";
         }
-		return "";
+        return sysUserVo.getLoginName();
 	}
 }

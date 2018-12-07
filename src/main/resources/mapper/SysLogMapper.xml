@@ -13,6 +13,7 @@
         	and ( ip like CONCAT('%',#{searchValue},'%')
         	or operate_module like CONCAT('%',#{searchValue},'%') )
         </if>
+        order by l.create_time desc
     </select>
     <insert id="saveSysLog">
     	INSERT INTO sys_log

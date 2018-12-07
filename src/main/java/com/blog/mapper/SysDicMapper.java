@@ -12,9 +12,8 @@ import tk.mybatis.mapper.common.BaseMapper;
 @Mapper
 public interface SysDicMapper extends BaseMapper<SysConfigPo>{
 	List<SysDicPo> findSysDicAll(String searchValue);
-	List<SysDicPo> findSysDicToType();
+	List<SysDicPo> getDicType(String dicType);
 	void saveSysDic(SysDicPo sysDicPo);
 	void deleteSysDic(String id);
-	void updateSysDicToDicType(SysDicPo sysDicPo);
-	void updateSysDicToDicCode(SysDicPo sysDicPo);
+	void updateSysDic(SysDicPo sysDicPo);
 }

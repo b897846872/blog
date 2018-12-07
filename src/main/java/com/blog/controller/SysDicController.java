@@ -50,17 +50,16 @@ public class SysDicController {
 		return ResponseResultUtil.success();
 	}
 	
-	@PutMapping("updateDicCode")
+	@GetMapping("getDicType")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult updateDicCode(@RequestBody SysDicPo sysDicPo){
-		sysDicService.updateSysDicToDicCode(sysDicPo);
-		return ResponseResultUtil.success();
+	public ResponseResult getDicType(@RequestParam(required = true) String dicType){
+		return ResponseResultUtil.success(sysDicService.getDicType(dicType));
 	}
 	
-	@PutMapping("updateDicType")
+	@PutMapping("updateSysDic")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult updateDicType(@RequestBody SysDicPo sysDicPo){
-		sysDicService.updateSysDicToDicType(sysDicPo);
+	public ResponseResult updateSysDic(@RequestBody SysDicPo sysDicPo){
+		sysDicService.updateSysDic(sysDicPo);
 		return ResponseResultUtil.success();
 	}
 }

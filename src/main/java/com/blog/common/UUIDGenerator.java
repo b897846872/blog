@@ -39,7 +39,7 @@ public final class UUIDGenerator {
             incrementingValue = 0;
             i = 0;
         }
-        return baseUUID + System.currentTimeMillis() + i;
+        return (baseUUID + System.currentTimeMillis() + i).substring(0, 31);
     }
 
     protected static synchronized void getInitialUUID() {
