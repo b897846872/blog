@@ -14,7 +14,4 @@ https://github.com/BambooZhang/springboot-study/tree/master/springboot-shiro/src
 文章管理，随笔管理，相册管理，资源贴，
 评论管理。
 
-先写
-系统日志
-普通接口
-权限
+https://github.com/hinesboy/mavonEditor 编辑器
