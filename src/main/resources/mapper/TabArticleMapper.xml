@@ -20,6 +20,10 @@
         <if test="categoryId != null and categoryId != ''">
         	and a.category_id = #{categoryId}
         </if>
+        <if test="searchValue != null and searchValue != ''">
+        	and (a.title like CONCAT('%',#{searchValue},'%')
+        	or a.content like CONCAT('%',#{searchValue},'%'))
+        </if>
     </select>
     <insert id="saveTabArticle">
     	INSERT INTO tab_article

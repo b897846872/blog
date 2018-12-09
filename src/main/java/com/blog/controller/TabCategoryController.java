@@ -34,10 +34,16 @@ public class TabCategoryController {
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
 									@RequestParam(required = true) String pageSize,
-									@RequestParam(required = true) String searchValue) {
+									@RequestParam(required = false) String searchValue) {
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         PageInfo<TabCategoryVo> tabCategoryPageInfo = new PageInfo<>(tabCategoryService.findTabCategoryAll(searchValue));
 		return ResponseResultUtil.success(tabCategoryPageInfo);
+	}
+	
+	@GetMapping("categoryList")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult findTabCategoryByType(@RequestParam(required = true) String typeCode) {
+		return ResponseResultUtil.success(tabCategoryService.findTabCategoryByType(typeCode));
 	}
 	
 	@PutMapping("save")

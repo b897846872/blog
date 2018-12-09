@@ -3,7 +3,7 @@
 <mapper namespace="com.blog.mapper.TabCategoryMapper">
     <select id="findTabCategoryAll" resultType="tabCategoryVo" parameterType="String">
         SELECT 
-        	c.id, c.name, c.value, d.dic_name as dicName, d.dic_value as dicValue,
+        	c.id, c.name, c.value, d.dic_name as dicName, d.dic_code as dicValue, d.id as typeId,
         	d.dic_type as dicType, c.create_time as createTime, c.update_time as updateTime,
         	u.id as userId, u.login_name as loginName
         FROM tab_category c
@@ -11,9 +11,19 @@
         left join sys_user u on u.id = c.user_id
         WHERE 1=1
         <if test="_parameter != null">
-        	and (name like CONCAT('%',#{searchValue},'%')
-        	or UPPER(value) like UPPER(CONCAT('%',#{value},'%')) )
+        	and (c.name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(c.value) like UPPER(CONCAT('%',#{searchValue},'%')) )
         </if>
+    </select>
+    <select id="findTabCategoryByType" resultType="tabCategoryVo" parameterType="String">
+        SELECT 
+        	c.id, c.name, c.value, d.dic_name as dicName, d.dic_code as dicValue, d.id as typeId,
+        	d.dic_type as dicType, c.create_time as createTime, c.update_time as updateTime,
+        	u.id as userId, u.login_name as loginName
+        FROM tab_category c
+        left join sys_dic d on d.id = c.type_id
+        left join sys_user u on u.id = c.user_id
+        WHERE d.dic_code = #{typeCode}
     </select>
     <insert id="saveTabCategory">
     	INSERT INTO tab_category
@@ -26,7 +36,7 @@
     </delete>
     <update id="updateTabCategory">
     	UPDATE tab_category SET 
-    		name = #{name}, value = #{value}, type_id = #{typeId}
+    		name = #{name}, value = #{value}, type_id = #{typeId}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
 </mapper>

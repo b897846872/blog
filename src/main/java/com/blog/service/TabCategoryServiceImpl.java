@@ -47,4 +47,9 @@ public class TabCategoryServiceImpl implements TabCategoryService {
 		tabCategoryMapper.updateTabCategory(tabCategoryPo);
 	}
 
+	@Override
+	public List<TabCategoryVo> findTabCategoryByType(String typeCode) {
+		return tabCategoryMapper.findTabCategoryByType(typeCode);
+	}
+
 }

@@ -10,4 +10,5 @@ public interface TabCategoryService {
 	void saveTabCategory(TabCategoryPo tabCategoryPo);
 	void deleteTabCategory(String id);
 	void updateTabCategory(TabCategoryPo tabCategoryPo);
+	List<TabCategoryVo> findTabCategoryByType(String typeCode);
 }

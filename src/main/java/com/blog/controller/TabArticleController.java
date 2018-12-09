@@ -35,10 +35,12 @@ public class TabArticleController {
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
 									@RequestParam(required = true) String pageSize,
 									@RequestParam(required = false, defaultValue="") String typeId,
-									@RequestParam(required = false, defaultValue="") String categoryId) {
+									@RequestParam(required = false, defaultValue="") String categoryId,
+									@RequestParam(required = false, defaultValue="") String searchValue) {
 		Map<String, String> param = new HashMap<>();
 		param.put("typeId", typeId);
 		param.put("categoryId", categoryId);
+		param.put("searchValue", searchValue);
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         PageInfo<TabArticleVo> sysConfigPageInfo = new PageInfo<>(tabArticleService.findTabArticle(param));
         log.info("查询文章", sysConfigPageInfo);

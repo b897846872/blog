@@ -2,6 +2,7 @@ package com.blog.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,8 @@ public class TabCommentServiceImpl implements TabCommentService {
 	
 	@Override
 	@OperLog(operateModule="查询评论")
-	public List<TabCommentPo> findTabCommentAll(String articleId) {
-		return tabCommentMapper.findTabCommentAll(articleId);
+	public List<TabCommentPo> findTabCommentAll(Map<String, String> param) {
+		return tabCommentMapper.findTabCommentAll(param);
 	}
 
 	@Override

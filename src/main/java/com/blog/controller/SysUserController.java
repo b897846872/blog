@@ -1,7 +1,10 @@
 package com.blog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,5 +34,59 @@ public class SysUserController {
         PageInfo<SysUserPo> userPageInfo = new PageInfo<>(userService.findAllUser(searchValue));
         log.info("用户列表", userPageInfo);
 		return ResponseResultUtil.success(userPageInfo);
+	}
+	
+	@GetMapping("getUser")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult getUser(@RequestParam(required = true) String id) {
+		try {
+			return ResponseResultUtil.success(userService.findUserById(id));
+		} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
+		}
+	}
+	
+	@PutMapping("save")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult save(@RequestBody SysUserPo sysUserPo) {
+		try {
+			userService.saveSysUser(sysUserPo);
+		} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
+		}
+		return ResponseResultUtil.success();
+	}
+	
+	@PutMapping("update")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult update(@RequestBody SysUserPo sysUserPo) {
+		try {
+			userService.updateSysUser(sysUserPo);
+		} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
+		}
+		return ResponseResultUtil.success();
+	}
+	
+	@PutMapping("updatePassword")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult updatePassword(@RequestBody SysUserPo sysUserPo) {
+		try {
+			userService.updatePassword(sysUserPo);
+		} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
+		}
+		return ResponseResultUtil.success();
+	}
+	
+	@DeleteMapping("delete")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult delete(@RequestParam(required = true) String id) {
+		try {
+			userService.deleteSysUser(id);
+		} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
+		}
+		return ResponseResultUtil.success();
 	}
 }

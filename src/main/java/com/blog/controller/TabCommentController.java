@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,9 +35,13 @@ public class TabCommentController {
 	@SuppressWarnings("rawtypes")
 	public ResponseResult list(@RequestParam(required = true) String pageNum, 
 									@RequestParam(required = true) String pageSize,
-									@RequestParam(required = true) String articleId) {
+									@RequestParam(required = false) String articleId,
+									@RequestParam(required = false) String content) {
+		Map<String, String> param = new HashMap<>();
+		param.put("articleId", articleId);
+		param.put("content", content);
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
-        PageInfo<TabCommentPo> tabCommentPageInfo = new PageInfo<>(tabCommentService.findTabCommentAll(articleId));
+        PageInfo<TabCommentPo> tabCommentPageInfo = new PageInfo<>(tabCommentService.findTabCommentAll(param));
 		return ResponseResultUtil.success(tabCommentPageInfo);
 	}
 	

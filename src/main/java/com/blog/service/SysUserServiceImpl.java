@@ -48,6 +48,7 @@ public class SysUserServiceImpl implements SysUserService {
 	public void saveSysUser(SysUserPo sysUserPo) {
 		sysUserPo.setId(UUIDGenerator.getUUID());
 		sysUserPo.setCreateTime(new Date());
+		sysUserPo.setStatus("1");
 		userMapper.saveSysUser(sysUserPo);
 	}
 
