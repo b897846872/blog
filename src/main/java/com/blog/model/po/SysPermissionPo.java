@@ -11,6 +11,16 @@ public class SysPermissionPo extends BasePo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String url;
 	private String name;
+	private String code;
+	/**
+	 * function: 功能
+	 * menu: 菜单
+	 * main: 菜单的主目录
+	 */
+	private String type;
+	private Integer order;
+	private String parentId;
+	
 	public String getUrl() {
 		return url;
 	}
@@ -23,4 +33,29 @@ public class SysPermissionPo extends BasePo implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getCode() {
+		return code;
+	}
+	public void setCode(String code) {
+		this.code = code;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public Integer getOrder() {
+		return order;
+	}
+	public void setOrder(Integer order) {
+		this.order = order;
+	}
+	public String getParentId() {
+		return parentId;
+	}
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
+	
 }

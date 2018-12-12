@@ -33,8 +33,10 @@ public class TabArticleController {
 	private static Logger log = LoggerFactory.getLogger(TabArticleController.class);
 	@Autowired
 	private TabArticleService tabArticleService;
-	@Value("${cbs.imagesPath}")
-	private String mImagesPath;
+	@Value("${imagesPath}")
+	private String imagesPath;
+	@Value("${localImage}")
+	private String localImage;
 	
 	@GetMapping("list")
 	@SuppressWarnings("rawtypes")
@@ -54,26 +56,20 @@ public class TabArticleController {
 	}
 	
 	@PostMapping("uploadImage")
+	@SuppressWarnings("rawtypes")
 	public ResponseResult uploadImage(@RequestBody MultipartFile file) {
 		Map<String, String> map = new HashMap<>();
-		System.out.println(file);
-        // 要上传的目标文件存放路径
-        String localPath = "D:/newfile/";
         // 上传成功或者失败的提示
         String msg = "";
-
-        if (FileUtils.upload(file, localPath, file.getOriginalFilename())){
+        if (FileUtils.upload(file, imagesPath, file.getOriginalFilename())){
             // 上传成功，给出页面提示
             msg = "上传成功！";
         }else {
             msg = "上传失败！";
-
         }
-
-        // 显示图片
         map.put("msg", msg);
         map.put("fileName", file.getOriginalFilename());
-		return ResponseResultUtil.success("http://127.0.0.1:8099/images/"+file.getOriginalFilename());
+		return ResponseResultUtil.success(localImage+file.getOriginalFilename());
 	}
 	
 	@PutMapping("save")

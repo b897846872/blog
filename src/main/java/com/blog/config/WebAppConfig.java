@@ -1,4 +1,4 @@
-package com.blog.controller;
+package com.blog.config;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 			mImagesPath = imagesPath;
 		}
 		LoggerFactory.getLogger(WebAppConfig.class).info("imagesPath=" + mImagesPath);
-		registry.addResourceHandler("/images/**").addResourceLocations(mImagesPath);
+		registry.addResourceHandler("/images/**").addResourceLocations("file:/"+mImagesPath);
 		super.addResourceHandlers(registry);
 	}
 }
