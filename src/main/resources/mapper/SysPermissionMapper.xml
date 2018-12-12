@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.mapper.SysPermissionMapper">
-    <select id="findSysPermissionByUserId" resultType="sysPermissionPo" parameterType="String">
-		select p.id, p.url, p.name, p.code, p.type, p.order, p.parent_id, pp.name, pp.code, pp.url
+    <select id="findSysPermissionByUserId" resultType="sysPermissionVo" parameterType="String">
+		select p.id as id, p.url as url, p.name as name, p.code as code, p.type as type, 
+		p.order as orderl, p.parent_id as parentId, pp.name as parentName, 
+		pp.code as parentCode, pp.url as parentUrl
 		FROM sys_user_role ur
 			LEFT JOIN sys_user u on ur.uid = u.id
 			LEFT JOIN sys_role r on r.id = ur.rid
@@ -10,6 +12,13 @@
 			LEFT JOIN sys_permission p on p.id = rp.pid
 			LEFT JOIN sys_permission pp on pp.id = p.parent_id
 		WHERE u.id = #{userId}
+    </select>
+    <select id="findSysPermissionAll" resultType="sysPermissionVo" parameterType="String">
+		select p.id as id, p.url as url, p.name as name, p.code as code, p.type as type, 
+		p.order as orderl, p.parent_id as parentId, pp.name as parentName, 
+		pp.code as parentCode, pp.url as parentUrl
+		FROM sys_permission p 
+		LEFT JOIN sys_permission pp on pp.id = p.parent_id
     </select>
     <insert id="saveSysPermission">
     	INSERT INTO sys_permission

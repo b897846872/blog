@@ -1,10 +1,12 @@
-package com.blog.model.po;
+package com.blog.model.vo;
 
 import java.io.Serializable;
+
+import com.blog.model.po.BasePo;
 /**
  * @author qi
  */
-public class SysPermissionPo extends BasePo implements Serializable {
+public class SysPermissionVo extends BasePo implements Serializable {
 	/**
 	 * 
 	 */
@@ -20,6 +22,9 @@ public class SysPermissionPo extends BasePo implements Serializable {
 	private String type;
 	private Integer orderl;
 	private String parentId;
+	private String parentName;
+	private String parentCode;
+	private String parentUrl;
 	
 	public String getUrl() {
 		return url;
@@ -57,5 +62,22 @@ public class SysPermissionPo extends BasePo implements Serializable {
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
-	
+	public String getParentName() {
+		return parentName;
+	}
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	public String getParentCode() {
+		return parentCode;
+	}
+	public void setParentCode(String parentCode) {
+		this.parentCode = parentCode;
+	}
+	public String getParentUrl() {
+		return parentUrl;
+	}
+	public void setParentUrl(String parentUrl) {
+		this.parentUrl = parentUrl;
+	}
 }

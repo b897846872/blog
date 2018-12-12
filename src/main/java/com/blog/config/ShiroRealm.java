@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.blog.model.po.SysPermissionPo;
 import com.blog.model.po.SysRolePo;
+import com.blog.model.vo.SysPermissionVo;
 import com.blog.model.vo.SysUserVo;
 import com.blog.service.SysPermissionService;
 import com.blog.service.SysRoleService;
@@ -55,13 +56,13 @@ public class ShiroRealm extends AuthorizingRealm {
         if (hasUser.getId() != null) {
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
             List<SysRolePo> rlist = sysRoleService.findSysRoleByUserId(hasUser.getId());//获取用户角色
-            List<SysPermissionPo> plist = sysPermissionService.findSysPermissionByUserId(hasUser.getId());//获取用户权限
+            List<SysPermissionVo> plist = sysPermissionService.findSysPermissionByUserId(hasUser.getId());//获取用户权限
             List<String> roleStrlist=new ArrayList<String>();////用户的角色集合
             List<String> perminsStrlist=new ArrayList<String>();//用户的权限集合
             for (SysRolePo role : rlist) {
             	roleStrlist.add(role.getName());
             }
-            for (SysPermissionPo uPermission : plist) {
+            for (SysPermissionVo uPermission : plist) {
             	perminsStrlist.add(uPermission.getName());
 			}
             hasUser.setRoleStrList(roleStrlist);

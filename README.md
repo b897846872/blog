@@ -29,6 +29,8 @@ https://github.com/tinymce/tinymce-docs/blob/master/general-configuration-guide/
 3.菜单和功能树形显示
 4.保存角色分配权限btso
 
+登录页、动态菜单、菜单树结构、
+
 DROP TABLE IF EXISTS `sys_permission`;
 CREATE TABLE `sys_permission` (
   `id` varchar(32) NOT NULL,
