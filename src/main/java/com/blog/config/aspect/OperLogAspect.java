@@ -131,17 +131,5 @@ public class OperLogAspect {
 			log.error("系统日志保存失败", e);
 		}
 	}
-	
-	/**
-	 * 获取当前用户
-	 * @return
-	 */
-//	private SysUser getCurrentUser() {
-//		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-//		HttpServletRequest request = attributes.getRequest();
-//		HttpSession session = request.getSession();
-//		SysUser sysUser = (SysUser) session.getAttribute("currentUser");
-//		return sysUser;
-//	}
 
 }
