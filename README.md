@@ -17,40 +17,23 @@ https://github.com/tinymce/tinymce-docs/blob/master/general-configuration-guide/
 ```
 
 ## 权限
-
+``` bash
 权限表里添加所有菜单和按钮(需要加权限的按钮)。
 角色权限表    角色分配权菜单或按钮权限时添加到中间表，初始化加载前台项目，读取数据库关联权限表，
 		根据数据相应的显示到页面上，按钮需要根据数据来判断，是否需要显示。
 用户可以获取角色，来获取菜单和按钮的权限。
 
 补充接口：
-1.查询全部菜单、根据用户查菜单、根据角色查菜单
-2.查询全部功能、根据用户查功能、根据角色查功能
-3.菜单和功能树形显示
-4.保存角色分配权限btso
-
-登录页、动态菜单、菜单树结构、
-
-DROP TABLE IF EXISTS `sys_permission`;
-CREATE TABLE `sys_permission` (
-  `id` varchar(32) NOT NULL,
-  `url` varchar(256) DEFAULT NULL COMMENT 'url地址',
-  `name` varchar(255) DEFAULT NULL COMMENT 'url描述',
-  `code` varchar(255) DEFAULT NULL,
-  `type` varchar(50) DEFAULT NULL,
-  `order` int(10) DEFAULT '0',
-  `parent_id` varchar(32) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `update_time` datetime DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of sys_permission
--- ----------------------------
-INSERT INTO `sys_permission` VALUES ('1', '', '内容管理', 'contentManage', 'main', '0', null, '2018-11-20 16:56:49', '2018-11-20 16:56:49');
-INSERT INTO `sys_permission` VALUES ('2', 'Articlelist', '文章管理', 'article', 'menu', '0', '1', '2018-11-21 10:33:44', null);
-INSERT INTO `sys_permission` VALUES ('3', null, '文章删除', 'article_delete', 'function', '0', '2', null, null);
-
+角色管理：
+1.角色查询
+2.根据角色id关联权限菜单表
+3.保存/修改角色
+4.删除角色，连带关联角色权限表也删
+5.添加(修改)角色权限（分批添加）
+用户管理：
+角色和用户表，多对多
+1.分配角色,关联到用户角色表里
+重要：是否有事务问题，没有加上
+```
 
 

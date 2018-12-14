@@ -1,12 +1,14 @@
 package com.blog.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blog.common.TreeToolUtils;
+import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysPermissionMapper;
 import com.blog.model.po.SysPermissionPo;
 import com.blog.model.vo.SysPermissionVo;
@@ -25,6 +27,8 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
 	@Override
 	public void saveSysPermission(SysPermissionPo sysPermissionPo) {
+		sysPermissionPo.setCreateTime(new Date());
+		sysPermissionPo.setId(UUIDGenerator.getUUID());
 		sysPermissionMapper.saveSysPermission(sysPermissionPo);
 	}
 
@@ -51,6 +55,8 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 				tree.setCode(sysPermissionVo.getCode());
 				tree.setId(sysPermissionVo.getId());
 				tree.setParentId(sysPermissionVo.getParentId());
+				tree.setParentName(sysPermissionVo.getParentName());
+				tree.setSysPermissionVo(sysPermissionVo);
 				if ("main".equals(sysPermissionVo.getType())) {
 					rootList.add(tree);
 //					continue;
@@ -61,6 +67,11 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 		TreeToolUtils toolUtils = new TreeToolUtils(rootList, bodyList);
 		List<TreeVo> list = toolUtils.getTree();
 		return list;
+	}
+
+	@Override
+	public List<SysPermissionVo> findSysPermissionByRoleId(String roleId) {
+		return sysPermissionMapper.findSysPermissionByRoleId(roleId);
 	}
 	
 }

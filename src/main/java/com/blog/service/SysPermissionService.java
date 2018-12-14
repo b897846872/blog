@@ -8,6 +8,7 @@ import com.blog.model.vo.TreeVo;
 
 public interface SysPermissionService {
 	List<SysPermissionVo> findSysPermissionByUserId(String userId);
+	List<SysPermissionVo> findSysPermissionByRoleId(String roleId);
 	List<TreeVo> findSysPermissionAll();
 	void saveSysPermission(SysPermissionPo sysPermissionPo);
 	void deleteSysPermission(String id);

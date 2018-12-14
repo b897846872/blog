@@ -20,11 +20,21 @@
 		FROM sys_permission p 
 		LEFT JOIN sys_permission pp on pp.id = p.parent_id
     </select>
+    <select id="findSysPermissionByRoleId" resultType="sysPermissionVo" parameterType="String">
+		select p.id as id, p.url as url, p.name as name, p.code as code, p.type as type, 
+		p.order as orderl, p.parent_id as parentId, pp.name as parentName, 
+		pp.code as parentCode, pp.url as parentUrl, r.name as roleName, r.id as roleId
+		FROM sys_role r
+			LEFT JOIN sys_role_permission rp on rp.rid = r.id
+			LEFT JOIN sys_permission p on p.id = rp.pid
+			LEFT JOIN sys_permission pp on pp.id = p.parent_id
+		WHERE r.id = #{userId}
+    </select>
     <insert id="saveSysPermission">
     	INSERT INTO sys_permission
-    		(id, url, name, code, type, order, parent_id, create_time) 
+    		(id, url, name, code, type, `order`, parent_id, create_time) 
     	VALUES
-    		(#{id}, #{url}, #{name}, #{code}, #{type}, #{order}, #{parentId}, #{createTime});
+    		(#{id}, #{url}, #{name}, #{code}, #{type}, #{orderl}, #{parentId}, #{createTime});
     </insert>
     <delete id="deleteSysPermission" parameterType="String">
     	DELETE FROM sys_permission WHERE id = #{id};
@@ -32,7 +42,7 @@
     <update id="updateSysPermission">
     	UPDATE sys_permission SET
     		url = #{url}, name = #{name}, code = #{code}, type = #{type}, 
-    		order = #{order}, parent_id = #{parentId}, update_time = #{updateTime}
+    		`order` = #{orderl}, parent_id = #{parentId}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
 </mapper>

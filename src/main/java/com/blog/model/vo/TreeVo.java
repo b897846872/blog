@@ -5,9 +5,11 @@ import java.util.List;
 public class TreeVo {
 	private String id;
 	private String parentId;
+	private String parentName;
 	private String title;
 	private String code;
-	private Boolean expand = false;
+	private Boolean expand = true;
+	private SysPermissionVo sysPermissionVo;
 	private List<TreeVo> children;
 	public String getTitle() {
 		return title;
@@ -45,5 +47,16 @@ public class TreeVo {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+	public String getParentName() {
+		return parentName;
+	}
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
+	}
+	public SysPermissionVo getSysPermissionVo() {
+		return sysPermissionVo;
+	}
+	public void setSysPermissionVo(SysPermissionVo sysPermissionVo) {
+		this.sysPermissionVo = sysPermissionVo;
+	}
 }

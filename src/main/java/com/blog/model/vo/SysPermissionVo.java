@@ -25,6 +25,8 @@ public class SysPermissionVo extends BasePo implements Serializable {
 	private String parentName;
 	private String parentCode;
 	private String parentUrl;
+	private String roleId;
+	private String roleName;
 	
 	public String getUrl() {
 		return url;
@@ -79,5 +81,17 @@ public class SysPermissionVo extends BasePo implements Serializable {
 	}
 	public void setParentUrl(String parentUrl) {
 		this.parentUrl = parentUrl;
+	}
+	public String getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
+	}
+	public String getRoleName() {
+		return roleName;
+	}
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 }

@@ -11,11 +11,21 @@
         	and u.id = #{userId}
         </if>
     </select>
+    <select id="findSysRoleAll" resultType="sysRolePo" parameterType="String">
+		select r.id as id, r.name as name, r.type as type, u.login_name as loginName,
+		r.create_time as createTime, r.update_time as updateTime
+		FROM sys_role r 
+			LEFT JOIN sys_user u on r.user_id = u.id
+		WHERE 1=1
+		<if test="_parameter != null">
+        	and r.name like CONCAT('%',#{searchValue},'%')
+        </if>
+    </select>
     <insert id="saveSysRole">
     	INSERT INTO sys_role
-    		(id, name, type,, create_time) 
+    		(id, name, type, user_id, create_time) 
     	VALUES
-    		(#{id}, #{name}, #{type}, #{createTime});
+    		(#{id}, #{name}, #{type}, #{userId}, #{createTime});
     </insert>
     <delete id="deleteSysRole" parameterType="String">
     	DELETE FROM sys_role WHERE id = #{id};

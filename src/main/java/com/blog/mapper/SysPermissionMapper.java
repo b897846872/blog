@@ -12,6 +12,7 @@ import tk.mybatis.mapper.common.BaseMapper;
 @Mapper
 public interface SysPermissionMapper extends BaseMapper<SysPermissionPo>{
 	List<SysPermissionVo> findSysPermissionByUserId(String userId);
+	List<SysPermissionVo> findSysPermissionByRoleId(String roleId);
 	List<SysPermissionVo> findSysPermissionAll();
 	void saveSysPermission(SysPermissionPo sysPermissionPo);
 	void deleteSysPermission(String id);

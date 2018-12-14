@@ -8,6 +8,11 @@ import com.blog.model.vo.TreeVo;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+/**
+ * 封装树结构
+ * @author qi
+ *
+ */
 public class TreeToolUtils {
 	private List<TreeVo> rootList; //根节点对象存放到这里
     private List<TreeVo> bodyList; //其他节点存放到这里，可以包含根节点
@@ -16,7 +21,11 @@ public class TreeToolUtils {
         this.rootList = rootList;
         this.bodyList = bodyList;
     }
-
+     
+    /**
+     * 获取树结构
+     * @return
+     */
     public List<TreeVo> getTree(){   //调用的方法入口
         if(bodyList != null && !bodyList.isEmpty()){
         //声明一个map，用来过滤已操作过的数据
@@ -27,7 +36,7 @@ public class TreeToolUtils {
         return null;
     }
 
-    public void getChild(TreeVo beanTree,Map<String,String> map){
+    private void getChild(TreeVo beanTree,Map<String,String> map){
         List<TreeVo> childList = Lists.newArrayList();
         bodyList.stream()
                 .filter(c -> !map.containsKey(c.getId()))
