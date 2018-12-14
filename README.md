@@ -25,9 +25,7 @@ https://github.com/tinymce/tinymce-docs/blob/master/general-configuration-guide/
 
 补充接口：
 角色管理：
-1.角色查询
 2.根据角色id关联权限菜单表
-3.保存/修改角色
 4.删除角色，连带关联角色权限表也删
 5.添加(修改)角色权限（分批添加）
 用户管理：
