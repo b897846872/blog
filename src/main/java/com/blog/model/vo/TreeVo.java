@@ -8,7 +8,14 @@ public class TreeVo {
 	private String parentName;
 	private String title;
 	private String code;
+	/**
+	 * 是否展开
+	 */
 	private Boolean expand = true;
+	/**
+	 * 是否选中
+	 */
+	private Boolean checked = false;
 	private SysPermissionVo sysPermissionVo;
 	private List<TreeVo> children;
 	public String getTitle() {
@@ -58,5 +65,11 @@ public class TreeVo {
 	}
 	public void setSysPermissionVo(SysPermissionVo sysPermissionVo) {
 		this.sysPermissionVo = sysPermissionVo;
+	}
+	public Boolean getChecked() {
+		return checked;
+	}
+	public void setChecked(Boolean checked) {
+		this.checked = checked;
 	}
 }

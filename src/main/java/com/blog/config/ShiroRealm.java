@@ -55,7 +55,13 @@ public class ShiroRealm extends AuthorizingRealm {
         SysUserVo hasUser = sysUserService.findUserByLoginName(token.getUsername());
         if (hasUser.getId() != null) {
             // 若存在，将此用户存放到登录认证info中，无需自己做密码对比，Shiro会为我们进行密码对比校验
-            List<SysRolePo> rlist = sysRoleService.findSysRoleByUserId(hasUser.getId());//获取用户角色
+            List<SysRolePo> rlist = new ArrayList<>();
+			try {
+				rlist = sysRoleService.findSysRoleByUserId(hasUser.getId());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}//获取用户角色
             List<SysPermissionVo> plist = sysPermissionService.findSysPermissionByUserId(hasUser.getId());//获取用户权限
             List<String> roleStrlist=new ArrayList<String>();////用户的角色集合
             List<String> perminsStrlist=new ArrayList<String>();//用户的权限集合

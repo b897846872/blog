@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.blog.mapper.SysRoleMapper">
     <select id="findSysRoleByUserId" resultType="sysRolePo" parameterType="String">
-		select r.id as id, r.name as name, r.type as type
+		select r.id as id, r.name as name, r.type as type, u.login_name as loginName,
+		r.create_time as createTime, r.update_time as updateTime
 		FROM sys_user_role ur
 			LEFT JOIN sys_user u on ur.uid = u.id
 			LEFT JOIN sys_role r on r.id = ur.rid

@@ -1,6 +1,7 @@
 package com.blog.service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,22 @@ public class SysRoleServiceImpl implements SysRoleService {
 	SysRoleMapper sysRoleMapper;
 
 	@Override
-	public List<SysRolePo> findSysRoleByUserId(String userId) {
-		return sysRoleMapper.findSysRoleByUserId(userId);
+	public List<SysRolePo> findSysRoleByUserId(String userId) throws Exception{
+		List<SysRolePo> alllist = sysRoleMapper.findSysRoleAll(null);
+		List<SysRolePo> userRolelist = sysRoleMapper.findSysRoleByUserId(userId);
+		Iterator<SysRolePo> it = alllist.iterator();
+		while (it.hasNext()) {
+			SysRolePo po1 = (SysRolePo) it.next();
+			for (int i = 0; i < userRolelist.size(); i++) {
+				if (po1.getId().equals(userRolelist.get(i).getId())) {
+					userRolelist.get(i).set_checked(true);
+					it.remove();
+				}
+				
+			}
+		}
+		alllist.addAll(userRolelist);
+		return alllist;
 	}
 
 	@Override

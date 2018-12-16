@@ -24,8 +24,8 @@
 		select p.id as id, p.url as url, p.name as name, p.code as code, p.type as type, 
 		p.order as orderl, p.parent_id as parentId, pp.name as parentName, 
 		pp.code as parentCode, pp.url as parentUrl, r.name as roleName, r.id as roleId
-		FROM sys_role r
-			LEFT JOIN sys_role_permission rp on rp.rid = r.id
+		FROM sys_role_permission rp
+			LEFT JOIN sys_role r on rp.rid = r.id
 			LEFT JOIN sys_permission p on p.id = rp.pid
 			LEFT JOIN sys_permission pp on pp.id = p.parent_id
 		WHERE r.id = #{userId}

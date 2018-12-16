@@ -48,7 +48,7 @@ public class AdminController {
 				if (currentUser.isAuthenticated()) {
 					logger.info("用户[" + user.getLoginName() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
 					System.out.println("用户[" + user.getLoginName() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-					return "redirect:/";
+					return "";
 				} else {
 					token.clear();
 					System.out.println("用户[" + user.getLoginName() + "]登录认证失败,重新登陆");

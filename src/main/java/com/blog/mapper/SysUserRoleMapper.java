@@ -9,6 +9,6 @@ import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
 public interface SysUserRoleMapper extends BaseMapper<SysUserRolePo>{
-	void saveUserRole(SysUserRolePo sysUserRolePo);
+	void saveSysUserRole(SysUserRolePo sysUserRolePo);
 	void deleteSysUserRole(String id);
 }

@@ -70,8 +70,32 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 	}
 
 	@Override
-	public List<SysPermissionVo> findSysPermissionByRoleId(String roleId) {
-		return sysPermissionMapper.findSysPermissionByRoleId(roleId);
+	public List<TreeVo> findSysPermissionByRoleId(String roleId) {
+		List<SysPermissionVo> rolePermissionlist = sysPermissionMapper.findSysPermissionByRoleId(roleId);
+		List<SysPermissionVo> alllist = sysPermissionMapper.findSysPermissionAll();
+		List<TreeVo> rootList = new ArrayList<>();
+	    List<TreeVo> bodyList = new ArrayList<>();
+		for (SysPermissionVo p1 : alllist) {
+			TreeVo tree = new TreeVo();
+			for (SysPermissionVo p2 : rolePermissionlist) {
+				if (p1.getId().equals(p2.getId())) {
+					tree.setChecked(true);
+					break;
+				}
+			}
+			tree.setTitle(p1.getName());
+			tree.setCode(p1.getCode());
+			tree.setId(p1.getId());
+			tree.setParentId(p1.getParentId());
+			tree.setParentName(p1.getParentName());
+			tree.setSysPermissionVo(p1);
+			if ("main".equals(p1.getType())) {
+				rootList.add(tree);
+			}
+			bodyList.add(tree);
+		}
+		TreeToolUtils toolUtils = new TreeToolUtils(rootList, bodyList);
+		return toolUtils.getTree();
 	}
 	
 }

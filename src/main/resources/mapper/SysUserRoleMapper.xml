@@ -8,6 +8,6 @@
     		(#{uid}, #{rid});
     </insert>
     <delete id="deleteSysUserRole" parameterType="String">
-    	DELETE FROM sys_permission WHERE uid = #{uid};
+    	DELETE FROM sys_user_role WHERE uid = #{uid};
     </delete>
 </mapper>
