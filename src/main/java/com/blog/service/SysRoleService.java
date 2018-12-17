@@ -10,4 +10,4 @@ public interface SysRoleService {
 	void saveSysRole(SysRolePo sysRolePo);
 	void deleteSysRole(String id);
 	void updateSysRole(SysRolePo sysRolePo);
-}	
+}

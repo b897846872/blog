@@ -62,14 +62,17 @@ public class ShiroRealm extends AuthorizingRealm {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}//获取用户角色
-            List<SysPermissionVo> plist = sysPermissionService.findSysPermissionByUserId(hasUser.getId());//获取用户权限
+			List<SysPermissionVo> plist = new ArrayList<>();
+            plist = sysPermissionService.findSysPermissionByUserId(hasUser.getId());//获取用户权限
             List<String> roleStrlist=new ArrayList<String>();////用户的角色集合
             List<String> perminsStrlist=new ArrayList<String>();//用户的权限集合
             for (SysRolePo role : rlist) {
             	roleStrlist.add(role.getName());
             }
             for (SysPermissionVo uPermission : plist) {
-            	perminsStrlist.add(uPermission.getName());
+            	if (uPermission != null) {
+            		perminsStrlist.add(uPermission.getName());
+            	}
 			}
             hasUser.setRoleStrList(roleStrlist);
             hasUser.setPermissionStrList(perminsStrlist);
