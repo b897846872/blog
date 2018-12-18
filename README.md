@@ -32,6 +32,12 @@ https://github.com/tinymce/tinymce-docs/blob/master/general-configuration-guide/
 角色和用户表，多对多
 1.分配角色,关联到用户角色表里
 重要：是否有事务问题，没有加上
+
+1.linux 下上传
+2。添加完整菜单，修改动态菜单，增加退出按钮
+3.redis缓存shiro
+4.内容管理优化
+5.博客前台构思
 ```
 
 
