@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.blog.common.Common;
 import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.vo.SysUserVo;
+
+
+
 
 /**
  * @Description: 用户登陆权限认证管理控制器
@@ -44,7 +48,7 @@ public class AdminController {
 				// 验证是否登录成功
 				if (currentUser.isAuthenticated()) {
 					logger.info("用户[" + user.getLoginName() + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");
-					return ResponseResultUtil.success();
+					return ResponseResultUtil.success(Common.getCurrentUserId());
 				} else {
 					token.clear();
 					return ResponseResultUtil.error("用户[" + user.getLoginName() + "]登录认证失败,重新登陆");
@@ -69,15 +73,16 @@ public class AdminController {
 	/**
 	 * 退出
 	 * @return
+	 * @throws Exception 
 	 */
-    @GetMapping("logout")
-    public String logout(){
+	@GetMapping("logout")
+    public ResponseResult logout() {
     	try {
-    		SecurityUtils.getSubject().logout(); 
-    	} catch (Exception e) { 
-			System.err.println(e.getMessage()); 
+    		SecurityUtils.getSubject().logout();
+    		return ResponseResultUtil.success();
+    	} catch (Exception e) {
+			return ResponseResultUtil.error(e.getMessage());
     	}
-    	return "logout";
     }
 
 }
