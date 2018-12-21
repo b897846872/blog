@@ -1,7 +1,6 @@
 props:
  filterChainDefinitionMap:
   #/user/**: authc,roles[admin]
-  /login: anon
-  /ajaxLogin: anon
   /index: anon
-  /**: anon
+  /logout: anon
+  /**: authc

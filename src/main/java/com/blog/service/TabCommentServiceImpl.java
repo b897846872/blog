@@ -19,7 +19,6 @@ public class TabCommentServiceImpl implements TabCommentService {
 	TabCommentMapper tabCommentMapper;
 	
 	@Override
-	@OperLog(operateModule="查询评论")
 	public List<TabCommentPo> findTabCommentAll(Map<String, String> param) {
 		return tabCommentMapper.findTabCommentAll(param);
 	}

@@ -20,7 +20,6 @@ public class TabCategoryServiceImpl implements TabCategoryService {
 	TabCategoryMapper tabCategoryMapper;
 	
 	@Override
-	@OperLog(operateModule="查询分类")
 	public List<TabCategoryVo> findTabCategoryAll(String searchValue) {
 		return tabCategoryMapper.findTabCategoryAll(searchValue);
 	}
