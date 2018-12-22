@@ -60,7 +60,11 @@ public class ShiroConfiguration {
         EhCacheManager ehCacheManager = new EhCacheManager();
         return ehCacheManager;
     }
-
+    
+    /**
+     * 配置核心安全事务管理器
+     * @return
+     */
     @Bean(name = "securityManager")
     public DefaultWebSecurityManager securityManager(){
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();

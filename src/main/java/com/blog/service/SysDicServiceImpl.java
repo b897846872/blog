@@ -20,7 +20,6 @@ public class SysDicServiceImpl implements SysDicService {
 	
 	
 	@Override
-	@OperLog(operateModule="查询数据字典")
 	public List<SysDicPo> findSysDicAll(String searchValue) {
 		return sysDicMapper.findSysDicAll(searchValue);
 	}
@@ -41,7 +40,6 @@ public class SysDicServiceImpl implements SysDicService {
 	}
 
 	@Override
-	@OperLog(operateModule="查询数据字典类型")
 	public List<SysDicPo> getDicType(String sysDicPo) {
 		return sysDicMapper.getDicType(sysDicPo);
 	}

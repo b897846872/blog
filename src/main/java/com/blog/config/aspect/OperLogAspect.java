@@ -15,9 +15,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.blog.common.Common;
 import com.blog.common.LocalAddressUtil;
 import com.blog.common.ResolveMethodParameter;
 import com.blog.common.UUIDGenerator;
+import com.blog.model.ResponseResult;
 import com.blog.model.annotation.OperLog;
 import com.blog.model.po.SysLogPo;
 import com.blog.service.SysLogService;
@@ -46,7 +48,7 @@ public class OperLogAspect {
 	/**
 	 * 登录拦截
 	 */
-	@Pointcut("execution(* com.blog.controller.SysUserController.*(..))")
+	@Pointcut("execution(* com.blog.controller.AdminController.*(..))")
 	public void logLogin() {
 	}
 
@@ -93,21 +95,20 @@ public class OperLogAspect {
 
 	@AfterReturning(returning = "object", pointcut = "log() || logLogin()")
 	public void doAfterReturning(JoinPoint joinPoint, Object object) {
-//		String targetName = joinPoint.getTarget().getClass().getName();
-//		String methodName = joinPoint.getSignature().getName();
-//		String operContent = "";
-//		// 登录类名和方法名
-//		String loginClass = "com.git.aoms.controller.PageController";
-//		String loginMethod = "index";
-//		if (targetName.equals(loginClass) && methodName.equals(loginMethod)) {
-//			Result<?> result = (Result<?>) object;
-//			// 登录成功
-//			if (result.getCode() == 0) {
-//				SysUser sysUser = getCurrentUser();
-//				operContent = "【" + sysUser.getLoginName() + "】：登录成功!";
-//				this.saveSysLog("系统平台", "REQUEST", "用户登录", "SPECIAL", operContent);
-//			}
-//		}
+		String targetName = joinPoint.getTarget().getClass().getName();
+		String methodName = joinPoint.getSignature().getName();
+		String operContent = "";
+		// 登录类名和方法名
+		String loginClass = "com.blog.controller.AdminController";
+		String loginMethod = "index";
+		if (targetName.equals(loginClass) && methodName.equals(loginMethod)) {
+			ResponseResult result = (ResponseResult) object;
+			// 登录成功
+			if (result.getCode() == 0) {
+				operContent = "【" + Common.getCurrentUserName() + "】：登录成功!";
+				this.saveSysLog("用户登录", operContent);
+			}
+		}
 	}
 	
 	/**

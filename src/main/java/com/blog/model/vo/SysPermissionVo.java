@@ -11,6 +11,7 @@ public class SysPermissionVo extends BasePo implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private String redisKey;//redis中的key
 	private String url;
 	private String name;
 	private String code;
@@ -93,5 +94,11 @@ public class SysPermissionVo extends BasePo implements Serializable {
 	}
 	public void setRoleName(String roleName) {
 		this.roleName = roleName;
+	}
+	public String getRedisKey() {
+		return redisKey;
+	}
+	public void setRedisKey(String redisKey) {
+		this.redisKey = redisKey;
 	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.blog.mapper.SysUserRoleMapper;
+import com.blog.model.annotation.OperLog;
 import com.blog.model.po.SysRolePo;
 import com.blog.model.po.SysUserRolePo;
 
@@ -16,6 +17,7 @@ public class SysUserRoleServiceImpl implements SysUserRoleService {
 	SysUserRoleMapper sysUserRoleMapper;
 	
 	@Override
+	@OperLog(operateModule="配置用户角色")
 	public void saveUserRoleList(List<SysRolePo> list, String userId) {
 		deleteSysUserRole(userId);
 		for (SysRolePo sysRolePo : list) {

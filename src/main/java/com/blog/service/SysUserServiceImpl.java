@@ -16,9 +16,10 @@ import com.blog.model.vo.SysUserVo;
 public class SysUserServiceImpl implements SysUserService {
 	@Autowired
 	private SysUserMapper userMapper;
+	@Autowired
+	private SysUserRoleService sysUserRoleService;
 	
 	@Override
-	@OperLog(operateModule="查询所有用户")
 	public List<SysUserPo> findAllUser(String searchValue) {
 		return userMapper.findUserAll(searchValue);
 	}
@@ -56,6 +57,7 @@ public class SysUserServiceImpl implements SysUserService {
 	@OperLog(operateModule="删除用户")
 	public void deleteSysUser(String id) {
 		userMapper.deleteSysUser(id);
+		sysUserRoleService.deleteSysUserRole(id);
 	}
 
 	@Override
@@ -75,7 +77,7 @@ public class SysUserServiceImpl implements SysUserService {
 	@Override
 	@OperLog(operateModule="修改最后登录时间")
 	public void updateSysUserToLoginTime(SysUserPo sysUserPo) {
-		sysUserPo.setUpdateTime(new Date());
+		sysUserPo.setLastLoginTime(new Date());
 		userMapper.updateSysUserToLoginTime(sysUserPo);
 	}
 	

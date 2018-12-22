@@ -18,7 +18,6 @@ public class SysConfigServiceImpl implements SysConfigService {
 	SysConfigMapper sysConfigMapper;
 	
 	@Override
-	@OperLog(operateModule="查询系统配置")
 	public List<SysConfigPo> findSysConfigAll(String searchValue) {
 		return sysConfigMapper.findSysConfigAll(searchValue);
 	}

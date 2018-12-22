@@ -28,7 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 			mImagesPath = imagesPath;
 		}
 		LoggerFactory.getLogger(WebAppConfig.class).info("imagesPath=" + mImagesPath);
-		registry.addResourceHandler("/images/**").addResourceLocations("file:/"+mImagesPath);
+		registry.addResourceHandler("/images/**").addResourceLocations("file:/home/images/");
 		super.addResourceHandlers(registry);
 	}
 }

@@ -20,7 +20,6 @@ public class TabArticleServiceImpl implements TabArticleService {
 	TabArticleMapper tabArticleMapper;
 	
 	@Override
-	@OperLog(operateModule="查询文章")
 	public List<TabArticleVo> findTabArticle(Map<String, String> param) {
 		return tabArticleMapper.findTabArticle(param);
 	}

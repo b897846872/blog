@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.blog.common.TreeToolUtils;
 import com.blog.common.UUIDGenerator;
 import com.blog.mapper.SysPermissionMapper;
+import com.blog.model.annotation.OperLog;
 import com.blog.model.po.SysPermissionPo;
 import com.blog.model.vo.SysPermissionVo;
 import com.blog.model.vo.TreeVo;
@@ -26,6 +27,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 	}
 
 	@Override
+	@OperLog(operateModule="保存菜单")
 	public void saveSysPermission(SysPermissionPo sysPermissionPo) {
 		sysPermissionPo.setCreateTime(new Date());
 		sysPermissionPo.setId(UUIDGenerator.getUUID());
@@ -33,11 +35,13 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 	}
 
 	@Override
+	@OperLog(operateModule="删除菜单")
 	public void deleteSysPermission(String id) {
 		sysPermissionMapper.deleteSysPermission(id);
 	}
 
 	@Override
+	@OperLog(operateModule="修改菜单")
 	public void updateSysPermission(SysPermissionPo sysPermissionPo) {
 		sysPermissionMapper.updateSysPermission(sysPermissionPo);
 	}
