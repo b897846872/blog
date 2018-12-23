@@ -24,6 +24,7 @@
         	and (a.title like CONCAT('%',#{searchValue},'%')
         	or a.content like CONCAT('%',#{searchValue},'%'))
         </if>
+        ORDER BY a.create_time desc
     </select>
     <insert id="saveTabArticle">
     	INSERT INTO tab_article
