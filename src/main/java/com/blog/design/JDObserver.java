@@ -1,4 +1,4 @@
-package com.blog.common;
+package com.blog.design;
 
 import java.util.Observable;
 import java.util.Observer;
