@@ -20,6 +20,7 @@ public class TabArticleVo extends BasePo implements Serializable{
 	private String dicName;
 	private String dicCode;
 	private String dicType;
+	private String commentNum;
 	public String getTitle() {
 		return title;
 	}
@@ -85,5 +86,11 @@ public class TabArticleVo extends BasePo implements Serializable{
 	}
 	public void setDicType(String dicType) {
 		this.dicType = dicType;
+	}
+	public String getCommentNum() {
+		return commentNum;
+	}
+	public void setCommentNum(String commentNum) {
+		this.commentNum = commentNum;
 	}
 }

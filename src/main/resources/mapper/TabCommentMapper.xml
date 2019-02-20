@@ -14,6 +14,7 @@
         <if test="content != null and content != ''">
         	and (a.content like CONCAT('%',#{content},'%'))
         </if>
+        ORDER BY c.create_time DESC
     </select>
     <insert id="saveTabComment">
     	INSERT INTO tab_comment
