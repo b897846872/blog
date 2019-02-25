@@ -23,7 +23,9 @@ import com.blog.common.ResponseResultUtil;
 import com.blog.model.ResponseResult;
 import com.blog.model.po.TabArticlePo;
 import com.blog.model.vo.TabArticleVo;
+import com.blog.model.vo.TabLableArticleVo;
 import com.blog.service.TabArticleService;
+import com.blog.service.TabLableArticleService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -33,6 +35,8 @@ public class TabArticleController {
 	private static Logger log = LoggerFactory.getLogger(TabArticleController.class);
 	@Autowired
 	private TabArticleService tabArticleService;
+	@Autowired
+	private TabLableArticleService tabLableArticleService;
 	@Value("${imagesPath}")
 	private String imagesPath;
 	@Value("${localImage}")
@@ -74,8 +78,8 @@ public class TabArticleController {
 	
 	@PutMapping("save")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult save(@RequestBody TabArticlePo tabArticlePo){
-		tabArticleService.saveTabArticle(tabArticlePo);
+	public ResponseResult save(@RequestBody TabArticleVo tabArticleVo){
+		tabArticleService.saveTabArticle(tabArticleVo);
 		return ResponseResultUtil.success();
 	}
 	
@@ -88,8 +92,26 @@ public class TabArticleController {
 	
 	@PutMapping("update")
 	@SuppressWarnings("rawtypes")
-	public ResponseResult update(@RequestBody TabArticlePo tabArticlePo){
-		tabArticleService.updateTabArticle(tabArticlePo);
+	public ResponseResult update(@RequestBody TabArticleVo tabArticleVo){
+		tabArticleService.updateTabArticle(tabArticleVo);
 		return ResponseResultUtil.success();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("getLableArticle")
+	public ResponseResult getLableArticle(@RequestParam(required = true) String aid) {
+		return ResponseResultUtil.success(tabLableArticleService.findTabLableArticleAll(aid));
+	}
+	
+	@GetMapping("listArticleByLable")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult listArticleByLable(@RequestParam(required = true) String pageNum, 
+									@RequestParam(required = true) String pageSize,
+									@RequestParam(required = false, defaultValue="") String searchValue) {
+		Map<String, String> param = new HashMap<>();
+		param.put("searchValue", searchValue);
+        PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
+        PageInfo<TabArticleVo> sysConfigPageInfo = new PageInfo<>(tabArticleService.findTabArticleBylable(param));
+		return ResponseResultUtil.success(sysConfigPageInfo);
 	}
 }

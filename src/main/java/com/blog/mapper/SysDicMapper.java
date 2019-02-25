@@ -10,7 +10,7 @@ import com.blog.model.po.SysDicPo;
 import tk.mybatis.mapper.common.BaseMapper;
 
 @Mapper
-public interface SysDicMapper extends BaseMapper<SysConfigPo>{
+public interface SysDicMapper extends BaseMapper<SysDicPo>{
 	List<SysDicPo> findSysDicAll(String searchValue);
 	List<SysDicPo> getDicType(String dicType);
 	void saveSysDic(SysDicPo sysDicPo);

@@ -41,4 +41,24 @@
     		is_original = #{hasOriginal}, type_id = #{typeId}, update_time = #{updateTime}
     	WHERE id = #{id};
     </update>
+    <select id="findTabArticleBylable" resultType="tabArticleVo" parameterType="Map">
+        SELECT
+			a.id as id, a.title as title, a.content as content, a.category_id as categoryId, 
+        	a.type_id as typeId,  a.clicks as clicks, a.is_Original as hasOriginal, 
+        	a.create_time as createTime, a.update_time as updateTime,
+        	c.name as categoryName, c.value as categoryValue,
+        	d.dic_name as dicName, dic_code as dicCode, dic_type as dicType,
+        	u.login_name as loginName, u.id as userId
+		FROM tab_article a 
+		LEFT JOIN tab_lable_article al ON a.id = al.aId
+		LEFT JOIN tab_lable l ON l.id = al.lId
+		left join tab_category c on c.id = a.category_id 
+		left join sys_dic d on d.id = a.type_id
+		left join sys_user u on u.id = a.user_id
+		WHERE 1=1
+        <if test="searchValue != null and searchValue != ''">
+        	and (l.name like CONCAT('%',#{searchValue},'%'))
+        </if>
+        ORDER BY a.create_time desc
+    </select>
 </mapper>

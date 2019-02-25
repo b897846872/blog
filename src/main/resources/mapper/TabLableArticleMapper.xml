@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.TabLableArticleMapper">
+    <select id="findTabLableArticleAll" resultType="tabLableArticleVo" parameterType="String">
+        SELECT
+			al.aid aid, al.lid lid, a.title title, l.name lableName
+		FROM
+			tab_lable_article al
+		INNER JOIN tab_article a ON a.id = al.aId
+		INNER JOIN tab_lable l ON l.id = al.lId
+        where 1=1
+        <if test="aid != null">
+        	and al.aId = #{aid}
+        </if>
+    </select>
+    <insert id="saveTabLableArticle">
+    	INSERT INTO TAB_LABLE_ARTICLE
+    		(lid, aid)
+    	VALUES
+    		(#{lid}, #{aid});
+    </insert>
+    <delete id="deleteTabLableArticle" parameterType="String">
+    	DELETE FROM TAB_LABLE_ARTICLE WHERE aid = #{aid};
+    </delete>
+</mapper>

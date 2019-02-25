@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.TabLableMapper">
+    <select id="findTabLableAll" resultType="tabLablePo" parameterType="String">
+        SELECT l.id id, l.name name
+        FROM TAB_LABLE l where 
+        where 1=1
+		<if test="_parameter != null">
+        	and ( l.name like CONCAT('%',#{searchValue},'%')
+        	or UPPER(l.code) like UPPER(CONCAT('%',#{searchValue},'%')) )
+        </if>
+    </select>
+    <insert id="saveTabLable">
+    	INSERT INTO TAB_LABLE
+    		(id, name, create_time)
+    	VALUES
+    		(#{id}, #{name}, #{createTime});
+    </insert>
+    <delete id="deleteTabLable" parameterType="String">
+    	DELETE FROM TAB_LABLE WHERE id = #{id};
+    </delete>
+    <update id="updateTabLable">
+    	UPDATE TAB_LABLE SET
+    		name = #{name}, update_time = #{updateTime}
+    	WHERE id = #{id};
+    </update>
+</mapper>

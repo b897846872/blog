@@ -8,7 +8,8 @@ import com.blog.model.vo.TabArticleVo;
 
 public interface TabArticleService {
 	List<TabArticleVo> findTabArticle(Map<String, String> param);
-	void saveTabArticle(TabArticlePo tabArticlePo);
+	void saveTabArticle(TabArticleVo tabArticleVo);
 	void deleteTabArticle(String id);
-	void updateTabArticle(TabArticlePo tabArticlePo);
+	void updateTabArticle(TabArticleVo tabArticleVo);
+	List<TabArticleVo> findTabArticleBylable(Map<String, String> param);
 }

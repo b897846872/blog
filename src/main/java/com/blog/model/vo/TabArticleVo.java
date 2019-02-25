@@ -1,6 +1,7 @@
 package com.blog.model.vo;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.blog.model.po.BasePo;
 
@@ -21,6 +22,7 @@ public class TabArticleVo extends BasePo implements Serializable{
 	private String dicCode;
 	private String dicType;
 	private String commentNum;
+	private List<TabLableArticleVo> lableArticlelist;
 	public String getTitle() {
 		return title;
 	}
@@ -92,5 +94,11 @@ public class TabArticleVo extends BasePo implements Serializable{
 	}
 	public void setCommentNum(String commentNum) {
 		this.commentNum = commentNum;
+	}
+	public List<TabLableArticleVo> getLableArticlelist() {
+		return lableArticlelist;
+	}
+	public void setLableArticlelist(List<TabLableArticleVo> lableArticlelist) {
+		this.lableArticlelist = lableArticlelist;
 	}
 }
