@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-12-24 14:33:09
+Date: 2019-02-25 16:42:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,6 +33,7 @@ CREATE TABLE `sys_config` (
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
+INSERT INTO `sys_config` VALUES ('955C4876B85F53F7131544170579626', 'projectName', 'projectName', '项目名称', '1', '2018-12-07 16:16:19', '2018-12-13 15:52:13');
 
 -- ----------------------------
 -- Table structure for sys_dic
@@ -52,10 +53,28 @@ CREATE TABLE `sys_dic` (
 -- ----------------------------
 -- Records of sys_dic
 -- ----------------------------
-INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567931', '文章', 'article', 'BLOGTYPE', null, '2018-11-19 15:15:10', '2018-12-07 14:50:05');
+INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567931', '文章', 'article', 'BLOGTYPE', null, '2018-11-19 15:15:10', '2019-01-24 03:51:52');
 INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567932', '随笔', 'essay', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
 INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567933', '相册', 'album', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
 INSERT INTO `sys_dic` VALUES ('D68167E839C311C8B115426028567934', '资源', 'resource', 'BLOGTYPE', null, '2018-11-19 15:15:11', '2018-11-19 15:15:11');
+
+-- ----------------------------
+-- Table structure for sys_dictype
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_dictype`;
+CREATE TABLE `sys_dictype` (
+  `id` varchar(32) NOT NULL,
+  `dic_type_name` varchar(255) DEFAULT NULL,
+  `remark` varchar(255) DEFAULT NULL,
+  `user_id` varchar(32) DEFAULT NULL,
+  `create_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_dictype
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for sys_log
@@ -77,24 +96,15 @@ CREATE TABLE `sys_log` (
 -- ----------------------------
 INSERT INTO `sys_log` VALUES ('1076EAF4BE05931EF51545375765979', '10.100.21.23', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-21 15:02:45', null);
 INSERT INTO `sys_log` VALUES ('1076EAF4BE05931EF51545378269139', '10.100.21.23', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-21 15:44:29', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545623302161', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 11:48:22', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545623314521', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 11:48:34', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545632724530', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 14:25:24', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545632741967', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 14:25:41', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545632792855', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 14:26:32', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633056300', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 14:30:56', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633062600', '10.100.51.6', 'admin', '删除文章', 'D86A67FA7C0581475F1544589472182', '2018-12-24 14:31:02', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633064538', '10.100.51.6', 'admin', '删除文章', '9F0D6DA14294DCFBAA1544502265271', '2018-12-24 14:31:04', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633075521', '10.100.51.6', 'admin', '删除分类', '4B24B15C65CDFD7D9B1545037289704', '2018-12-24 14:31:15', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633076800', '10.100.51.6', 'admin', '删除分类', '9B7E3766D891D9258815426949681162', '2018-12-24 14:31:16', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633084373', '10.100.51.6', 'admin', '删除文章', '1540FC52A2EEBA551C1545123378666', '2018-12-24 14:31:24', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633094839', '10.100.51.6', 'admin', '删除数据字典', '9F0D6DA14294DCFBAA1544519339058', '2018-12-24 14:31:34', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633100401', '10.100.51.6', 'admin', '删除系统配置', '955C4876B85F53F7131544170579626', '2018-12-24 14:31:40', null);
-INSERT INTO `sys_log` VALUES ('49B93F1854BB72957B1545633127658', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 14:32:07', null);
+INSERT INTO `sys_log` VALUES ('20A3FF86D7555EE7AF1550668917382', '192.168.1.5', 'admin', '保存数据字典', 'com.blog.model.po.SysDicPo@47fe89a9', '2019-02-20 21:21:57', null);
+INSERT INTO `sys_log` VALUES ('20A3FF86D7555EE7AF1550668943660', '192.168.1.5', 'admin', '保存分类', 'com.blog.model.po.TabCategoryPo@450acf2f', '2019-02-20 21:22:23', null);
+INSERT INTO `sys_log` VALUES ('20A3FF86D7555EE7AF1550668986550', '192.168.1.5', 'admin', '保存分类', 'com.blog.model.po.TabCategoryPo@415672e9', '2019-02-20 21:23:06', null);
+INSERT INTO `sys_log` VALUES ('2C7589930A5EF8E3231550666426697', '192.168.1.5', 'admin', '用户登录', '【admin】：登录成功!', '2019-02-20 20:40:26', null);
+INSERT INTO `sys_log` VALUES ('2C7589930A5EF8E3231550666426749', '192.168.1.5', 'admin', '用户登录', '【admin】：登录成功!', '2019-02-20 20:40:26', null);
 INSERT INTO `sys_log` VALUES ('58DDB1573064D9884F1545373261682', '10.100.21.23', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-21 14:21:01', null);
 INSERT INTO `sys_log` VALUES ('58DDB1573064D9884F1545373402625', '10.100.21.23', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-21 14:23:22', null);
 INSERT INTO `sys_log` VALUES ('58DDB1573064D9884F1545373407104', '10.100.21.23', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-21 14:23:27', null);
-INSERT INTO `sys_log` VALUES ('EA82636686D26060C21545619602098', '10.100.51.6', 'admin', '用户登录', '【admin】：登录成功!', '2018-12-24 10:46:42', null);
+INSERT INTO `sys_log` VALUES ('9647DFA3845410AB1A1550667053385', '192.168.1.5', 'admin', '保存文章', 'com.blog.model.po.TabArticlePo@5b542ec6', '2019-02-20 20:50:53', null);
 
 -- ----------------------------
 -- Table structure for sys_permission
@@ -166,6 +176,8 @@ CREATE TABLE `sys_role` (
 -- Records of sys_role
 -- ----------------------------
 INSERT INTO `sys_role` VALUES ('1', '超级管理员', null, '1', '2018-11-20 16:56:50', '2018-12-14 17:15:08');
+INSERT INTO `sys_role` VALUES ('45908D75FCD2344AD41544778982647', '内容员', null, '1', '2018-12-14 17:16:22', null);
+INSERT INTO `sys_role` VALUES ('45908D75FCD2344AD41544778990311', '测试人员', null, '1', '2018-12-14 17:16:30', null);
 
 -- ----------------------------
 -- Table structure for sys_role_permission
@@ -242,7 +254,8 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '123456', '123456@163.com', '2018-12-24 14:32:07', '1', '2018-11-20 16:56:51', '2018-11-20 16:56:51');
+INSERT INTO `sys_user` VALUES ('1', 'admin', 'admin', '21232f297a57a5a743894a0e4a801fc3', '123456', '123456@163.com', '2019-02-24 20:20:54', '1', '2018-11-20 16:56:51', '2018-11-20 16:56:51');
+INSERT INTO `sys_user` VALUES ('ED2A98E5CF12555B5A1545368102462', 'zxc', 'zxc', '827ccb0eea8a706c4c34a16891f84e7b', '123', '444', null, '1', '2018-12-21 12:55:02', null);
 
 -- ----------------------------
 -- Table structure for sys_user_role
@@ -259,6 +272,7 @@ CREATE TABLE `sys_user_role` (
 INSERT INTO `sys_user_role` VALUES ('1', '1');
 INSERT INTO `sys_user_role` VALUES ('1', '45908D75FCD2344AD41544778982647');
 INSERT INTO `sys_user_role` VALUES ('1', '45908D75FCD2344AD41544778990311');
+INSERT INTO `sys_user_role` VALUES ('ED2A98E5CF12555B5A1545368102462', '45908D75FCD2344AD41544778982647');
 
 -- ----------------------------
 -- Table structure for tab_article
@@ -281,6 +295,9 @@ CREATE TABLE `tab_article` (
 -- ----------------------------
 -- Records of tab_article
 -- ----------------------------
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426952877012', 'java基础', '1', '基础很重要的，基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的基础很重要的', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:07', null);
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953327194', 'spring', '1', 'springspringspringspring', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:28:52', null);
+INSERT INTO `tab_article` VALUES ('C5EA9D8D8E5E73D98B15426953631576', 'nginx', '1', 'nginxnginxnginxnginxnginxnginxnginxnginxnginx', '9B7E3766D891D9258815426949681162', 'D68167E839C311C8B115426028567931', '123', '0', '2018-11-20 14:29:23', null);
 
 -- ----------------------------
 -- Table structure for tab_category
@@ -300,6 +317,9 @@ CREATE TABLE `tab_category` (
 -- ----------------------------
 -- Records of tab_category
 -- ----------------------------
+INSERT INTO `tab_category` VALUES ('20A3FF86D7555EE7AF1550668986964', 'linux', 'linux', '20A3FF86D7555EE7AF1550668917793', null, '2019-02-20 21:23:06', null);
+INSERT INTO `tab_category` VALUES ('4B24B15C65CDFD7D9B1545037289704', '日常', 'day', 'D68167E839C311C8B115426028567932', '1', '2018-12-17 04:01:29', null);
+INSERT INTO `tab_category` VALUES ('9B7E3766D891D9258815426949681162', '技术', 'technology', 'D68167E839C311C8B115426028567931', null, '2018-11-20 14:22:48', null);
 
 -- ----------------------------
 -- Table structure for tab_comment
@@ -318,3 +338,42 @@ CREATE TABLE `tab_comment` (
 -- ----------------------------
 -- Records of tab_comment
 -- ----------------------------
+INSERT INTO `tab_comment` VALUES ('1', 'C5EA9D8D8E5E73D98B15426952877012', '', '按说', '2019-02-20 21:01:55', null);
+INSERT INTO `tab_comment` VALUES ('2', 'C5EA9D8D8E5E73D98B15426952877012', null, 'sdsd', '2019-02-20 21:07:59', null);
+
+-- ----------------------------
+-- Table structure for tab_lable
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_lable`;
+CREATE TABLE `tab_lable` (
+  `id` varchar(32) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `createTime` datetime DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tab_lable
+-- ----------------------------
+INSERT INTO `tab_lable` VALUES ('1', 'java', null, null);
+INSERT INTO `tab_lable` VALUES ('2', 'spring', null, null);
+INSERT INTO `tab_lable` VALUES ('3', '事务', null, null);
+INSERT INTO `tab_lable` VALUES ('4', 'java', null, null);
+
+-- ----------------------------
+-- Table structure for tab_lable_article
+-- ----------------------------
+DROP TABLE IF EXISTS `tab_lable_article`;
+CREATE TABLE `tab_lable_article` (
+  `lid` varchar(32) NOT NULL,
+  `aid` varchar(32) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tab_lable_article
+-- ----------------------------
+INSERT INTO `tab_lable_article` VALUES ('1', 'C5EA9D8D8E5E73D98B15426952877012');
+INSERT INTO `tab_lable_article` VALUES ('2', 'C5EA9D8D8E5E73D98B15426952877012');
+INSERT INTO `tab_lable_article` VALUES ('1', 'C5EA9D8D8E5E73D98B15426953327194');
+INSERT INTO `tab_lable_article` VALUES ('1', 'C5EA9D8D8E5E73D98B15426953631576');
