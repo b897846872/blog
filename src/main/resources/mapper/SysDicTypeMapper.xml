@@ -3,7 +3,7 @@
 <mapper namespace="com.blog.mapper.SysDicTypeMapper">
     <select id="findSysDicTypeAll" resultType="sysDicTypePo" parameterType="String">
         SELECT 
-        	d.id as id, d.dic_type_name as dicTypeName,
+        	d.id as id, d.dic_type_name as dicTypeName, d.remark remark,
         	d.create_time as createTime, d.update_time as updateTime,
         	d.user_id as userId, u.login_name as loginName
         FROM sys_dictype d 

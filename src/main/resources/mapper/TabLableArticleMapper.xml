@@ -9,7 +9,7 @@
 		INNER JOIN tab_article a ON a.id = al.aId
 		INNER JOIN tab_lable l ON l.id = al.lId
         where 1=1
-        <if test="aid != null">
+        <if test="_parameter != null">
         	and al.aId = #{aid}
         </if>
     </select>

@@ -20,6 +20,9 @@
         <if test="categoryId != null and categoryId != ''">
         	and a.category_id = #{categoryId}
         </if>
+        <if test="articleId != null and articleId != ''">
+        	and a.id = #{articleId}
+        </if>
         <if test="searchValue != null and searchValue != ''">
         	and (a.title like CONCAT('%',#{searchValue},'%')
         	or a.content like CONCAT('%',#{searchValue},'%'))
