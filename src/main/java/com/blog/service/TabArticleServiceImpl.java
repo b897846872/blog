@@ -40,12 +40,16 @@ public class TabArticleServiceImpl implements TabArticleService {
 		tabArticleVo.setUserId(Common.getCurrentUserId());
 		tabArticleMapper.saveTabArticle(tabArticleVo);
 		
+		if (tabArticleVo.getLableNamelist() == null 
+					|| tabArticleVo.getLableNamelist().size() == 0) {
+			return;
+		}
 		// 保存标签
-		for (int i = 0; i < tabArticleVo.getLableArticlelist().size(); i++) {
+		for (int i = 0; i < tabArticleVo.getLableNamelist().size(); i++) {
 			TabLablePo tabLablePo = new TabLablePo();
 			String lid = UUIDGenerator.getUUID();
 			tabLablePo.setId(lid);
-			tabLablePo.setName(tabArticleVo.getLableArticlelist().get(i).getLableName());
+			tabLablePo.setName(tabArticleVo.getLableNamelist().get(i));
 			tabLablePo.setCreateTime(new Date());
 			tabLableService.saveTabLable(tabLablePo);
 			
@@ -83,11 +87,11 @@ public class TabArticleServiceImpl implements TabArticleService {
 			tabLableService.deleteTabLable(lableArticlelist.get(i).getLid());
 		}
 		// 保存标签
-		for (int i = 0; i < tabArticleVo.getLableArticlelist().size(); i++) {
+		for (int i = 0; i < tabArticleVo.getLableNamelist().size(); i++) {
 			TabLablePo tabLablePo = new TabLablePo();
 			String lid = UUIDGenerator.getUUID();
 			tabLablePo.setId(lid);
-			tabLablePo.setName(tabArticleVo.getLableArticlelist().get(i).getLableName());
+			tabLablePo.setName(tabArticleVo.getLableNamelist().get(i));
 			tabLablePo.setCreateTime(new Date());
 			tabLableService.saveTabLable(tabLablePo);
 			

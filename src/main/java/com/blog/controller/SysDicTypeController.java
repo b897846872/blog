@@ -37,6 +37,13 @@ public class SysDicTypeController {
 		return ResponseResultUtil.success(sysDicTypePageInfo);
 	}
 	
+	@GetMapping("listDicType")
+	@SuppressWarnings("rawtypes")
+	public ResponseResult listDicType() {
+		String searchValue = null;
+		return ResponseResultUtil.success(sysDicTypeService.findSysDicTypeAll(searchValue));
+	}
+	
 	@PutMapping("save")
 	@SuppressWarnings("rawtypes")
 	public ResponseResult save(@RequestBody SysDicTypePo sysDicTypePo){

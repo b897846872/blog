@@ -48,10 +48,12 @@ public class TabArticleController {
 									@RequestParam(required = true) String pageSize,
 									@RequestParam(required = false, defaultValue="") String typeId,
 									@RequestParam(required = false, defaultValue="") String categoryId,
+									@RequestParam(required = false, defaultValue="") String articleId,
 									@RequestParam(required = false, defaultValue="") String searchValue) {
 		Map<String, String> param = new HashMap<>();
 		param.put("typeId", typeId);
 		param.put("categoryId", categoryId);
+		param.put("articleId", articleId);
 		param.put("searchValue", searchValue);
         PageHelper.startPage(Integer.parseInt(pageNum), Integer.parseInt(pageSize));
         PageInfo<TabArticleVo> sysConfigPageInfo = new PageInfo<>(tabArticleService.findTabArticle(param));
@@ -99,8 +101,14 @@ public class TabArticleController {
 	
 	@SuppressWarnings("rawtypes")
 	@GetMapping("getLableArticle")
-	public ResponseResult getLableArticle(@RequestParam(required = true) String aid) {
-		return ResponseResultUtil.success(tabLableArticleService.findTabLableArticleAll(aid));
+	public ResponseResult getLableArticle(@RequestParam(required = true) String id) {
+		return ResponseResultUtil.success(tabLableArticleService.findTabLableArticleAll(id));
+	}
+	
+	@SuppressWarnings("rawtypes")
+	@GetMapping("listLable")
+	public ResponseResult listLable(@RequestParam(required = true) String id) {
+		return ResponseResultUtil.success(tabLableArticleService.listLable(id));
 	}
 	
 	@GetMapping("listArticleByLable")

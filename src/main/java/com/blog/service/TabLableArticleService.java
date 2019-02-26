@@ -8,6 +8,7 @@ import com.blog.model.vo.TabLableArticleVo;
 
 public interface TabLableArticleService {
 	List<TabLableArticleVo> findTabLableArticleAll(String aid);
+	List<String> listLable(String aid);
 	void saveTabLableArticle(TabLableArticlePo tabLableArticlePo);
 	void deleteTabLableArticle(String aid);
 }

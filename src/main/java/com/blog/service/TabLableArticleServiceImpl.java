@@ -9,6 +9,7 @@ import com.blog.mapper.TabLableArticleMapper;
 import com.blog.model.po.TabLableArticlePo;
 import com.blog.model.po.TabLablePo;
 import com.blog.model.vo.TabLableArticleVo;
+import com.google.common.collect.Lists;
 
 @Service
 public class TabLableArticleServiceImpl implements TabLableArticleService {
@@ -18,6 +19,18 @@ public class TabLableArticleServiceImpl implements TabLableArticleService {
 	@Override
 	public List<TabLableArticleVo> findTabLableArticleAll(String aid) {
 		return tabLableArticleMapper.findTabLableArticleAll(aid);
+	}
+	
+	@Override
+	public List<String> listLable(String aid) {
+		List<String> lablelist = Lists.newArrayList();
+		List<TabLableArticleVo> lableArticlelist = tabLableArticleMapper.findTabLableArticleAll(aid);
+		if (lableArticlelist != null && lableArticlelist.size() != 0) {
+			for (int i = 0; i < lableArticlelist.size(); i++) {
+				lablelist.add(lableArticlelist.get(i).getLableName());
+			}
+		}
+		return lablelist;
 	}
 
 	@Override

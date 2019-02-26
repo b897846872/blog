@@ -23,6 +23,7 @@ public class TabArticleVo extends BasePo implements Serializable{
 	private String dicType;
 	private String commentNum;
 	private List<TabLableArticleVo> lableArticlelist;
+	private List<String> lableNamelist;
 	public String getTitle() {
 		return title;
 	}
@@ -100,5 +101,11 @@ public class TabArticleVo extends BasePo implements Serializable{
 	}
 	public void setLableArticlelist(List<TabLableArticleVo> lableArticlelist) {
 		this.lableArticlelist = lableArticlelist;
+	}
+	public List<String> getLableNamelist() {
+		return lableNamelist;
+	}
+	public void setLableNamelist(List<String> lableNamelist) {
+		this.lableNamelist = lableNamelist;
 	}
 }
