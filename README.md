@@ -24,3 +24,8 @@ blog是博客后台代码
 * 系统配置
 * 角色管理
 * 菜单管理
+
+## 文件
+blog.sql sql文件
+blogData.ndm 数据库模型
+
